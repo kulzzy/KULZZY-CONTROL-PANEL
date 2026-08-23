@@ -14,85 +14,447 @@
 html,body{margin:0;padding:0;width:100%;min-height:100%;background:#020b16;font-family:Arial,Helvetica,sans-serif;color:white}
 body{padding:15px}
 button,input{font-family:Arial,Helvetica,sans-serif}
+
 .control-panel{width:100%;max-width:1600px;margin:0 auto}
-.control-header{width:100%;background:linear-gradient(135deg,#071525,#020b16);border:1px solid rgba(255,215,0,.35);border-radius:14px;padding:20px;margin-bottom:15px;text-align:center;box-shadow:0 0 20px rgba(0,0,0,.35)}
-.control-header h1{margin:0;color:#ffd700;font-size:28px;font-weight:900;letter-spacing:1px}
-.control-header p{margin:7px 0 0;color:#b9c7d6;font-size:14px}
 
-.login-box{width:100%;max-width:520px;margin:0 auto 15px;background:#071525;border:1px solid rgba(255,215,0,.35);border-radius:14px;padding:22px;box-shadow:0 0 20px rgba(0,0,0,.3)}
-.login-box h2{margin:0 0 8px;color:#ffd700;text-align:center;font-size:21px}
-.login-description{color:#8193a8;font-size:12px;text-align:center;line-height:1.5;margin-bottom:18px}
-.login-input{width:100%;padding:13px;margin-bottom:10px;border:1px solid rgba(255,215,0,.25);border-radius:8px;background:#020b16;color:white;outline:none;font-size:14px}
+.control-header{
+width:100%;
+background:linear-gradient(135deg,#071525,#020b16);
+border:1px solid rgba(255,215,0,.35);
+border-radius:14px;
+padding:20px;
+margin-bottom:15px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,.35)
+}
+
+.control-header h1{
+margin:0;
+color:#ffd700;
+font-size:28px;
+font-weight:900;
+letter-spacing:1px
+}
+
+.control-header p{
+margin:7px 0 0;
+color:#b9c7d6;
+font-size:14px
+}
+
+.login-box{
+width:100%;
+max-width:520px;
+margin:0 auto 15px;
+background:#071525;
+border:1px solid rgba(255,215,0,.35);
+border-radius:14px;
+padding:22px;
+box-shadow:0 0 20px rgba(0,0,0,.3)
+}
+
+.login-box h2{
+margin:0 0 8px;
+color:#ffd700;
+text-align:center;
+font-size:21px
+}
+
+.login-description{
+color:#8193a8;
+font-size:12px;
+text-align:center;
+line-height:1.5;
+margin-bottom:18px
+}
+
+.login-input{
+width:100%;
+padding:13px;
+margin-bottom:10px;
+border:1px solid rgba(255,215,0,.25);
+border-radius:8px;
+background:#020b16;
+color:white;
+outline:none;
+font-size:14px
+}
+
 .login-input:focus{border-color:#ffd700}
-.login-button{width:100%;padding:13px;border:0;border-radius:8px;background:#ffd700;color:#020b16;font-weight:900;cursor:pointer;font-size:14px}
-.login-button:hover{background:#fff000}
-.login-message{margin-top:12px;text-align:center;font-size:12px;color:#ff7373;min-height:15px}
 
-.admin-session{display:none;width:100%;background:#071525;border:1px solid rgba(69,255,154,.25);border-radius:14px;padding:13px 16px;margin-bottom:15px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.admin-session-info{color:#45ff9a;font-size:13px;font-weight:bold}
-.logout-button{border:0;border-radius:7px;padding:9px 14px;background:#631c24;color:white;font-weight:900;cursor:pointer;font-size:12px}
+.login-button{
+width:100%;
+padding:13px;
+border:0;
+border-radius:8px;
+background:#ffd700;
+color:#020b16;
+font-weight:900;
+cursor:pointer;
+font-size:14px
+}
+
+.login-button:hover{background:#fff000}
+
+.login-message{
+margin-top:12px;
+text-align:center;
+font-size:12px;
+color:#ff7373;
+min-height:15px
+}
+
+.admin-session{
+display:none;
+width:100%;
+background:#071525;
+border:1px solid rgba(69,255,154,.25);
+border-radius:14px;
+padding:13px 16px;
+margin-bottom:15px;
+align-items:center;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap
+}
+
+.admin-session-info{
+color:#45ff9a;
+font-size:13px;
+font-weight:bold
+}
+
+.logout-button{
+border:0;
+border-radius:7px;
+padding:9px 14px;
+background:#631c24;
+color:white;
+font-weight:900;
+cursor:pointer;
+font-size:12px
+}
+
 .logout-button:hover{background:#852631}
 
-.admin-manager{display:none;width:100%;background:#071525;border:1px solid rgba(255,215,0,.3);border-radius:14px;padding:18px;margin-bottom:15px}
-.admin-manager-title{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:15px}
-.admin-manager-title h2{margin:0;color:#ffd700;font-size:20px}
-.firebase-status{font-size:12px;font-weight:bold;padding:7px 10px;border-radius:20px;background:#172334;color:#aaa}
-.firebase-status.online{background:rgba(0,180,80,.15);color:#45ff9a;border:1px solid rgba(69,255,154,.25)}
-.firebase-status.offline{background:rgba(255,60,60,.12);color:#ff7070}
+.admin-manager{
+display:none;
+width:100%;
+background:#071525;
+border:1px solid rgba(255,215,0,.3);
+border-radius:14px;
+padding:18px;
+margin-bottom:15px
+}
 
-.admin-form{display:grid;grid-template-columns:1fr 1.5fr auto auto;gap:10px;width:100%}
-.admin-form input{width:100%;min-width:0;padding:13px 14px;border:1px solid rgba(255,215,0,.25);border-radius:8px;background:#020b16;color:white;outline:none;font-size:14px}
+.admin-manager-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:15px
+}
+
+.admin-manager-title h2{
+margin:0;
+color:#ffd700;
+font-size:20px
+}
+
+.firebase-status{
+font-size:12px;
+font-weight:bold;
+padding:7px 10px;
+border-radius:20px;
+background:#172334;
+color:#aaa
+}
+
+.firebase-status.online{
+background:rgba(0,180,80,.15);
+color:#45ff9a;
+border:1px solid rgba(69,255,154,.25)
+}
+
+.firebase-status.offline{
+background:rgba(255,60,60,.12);
+color:#ff7070
+}
+
+.admin-form{
+display:grid;
+grid-template-columns:1fr 1.5fr auto auto;
+gap:10px;
+width:100%
+}
+
+.admin-form input{
+width:100%;
+min-width:0;
+padding:13px 14px;
+border:1px solid rgba(255,215,0,.25);
+border-radius:8px;
+background:#020b16;
+color:white;
+outline:none;
+font-size:14px
+}
+
 .admin-form input:focus{border-color:#ffd700}
-.admin-form button{border:0;border-radius:8px;padding:13px 18px;background:#ffd700;color:#020b16;font-weight:900;cursor:pointer;white-space:nowrap}
-.admin-form button:hover{background:#fff000}
-.admin-form button.cancel{background:#273548;color:white;display:none}
 
-.admin-list{margin-top:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.admin-card{min-width:0;background:#020b16;border:1px solid rgba(255,215,0,.18);border-radius:10px;padding:13px}
-.admin-card-name{color:#ffd700;font-size:15px;font-weight:900;margin-bottom:6px;overflow-wrap:anywhere}
-.admin-card-url{color:#91a4b8;font-size:11px;line-height:1.4;word-break:break-all;margin-bottom:12px}
-.admin-card-actions{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
-.admin-card-actions button{border:0;border-radius:6px;padding:9px 5px;cursor:pointer;font-weight:bold;font-size:11px}
+.admin-form button{
+border:0;
+border-radius:8px;
+padding:13px 18px;
+background:#ffd700;
+color:#020b16;
+font-weight:900;
+cursor:pointer;
+white-space:nowrap
+}
+
+.admin-form button:hover{background:#fff000}
+
+.admin-form button.cancel{
+background:#273548;
+color:white;
+display:none
+}
+
+.admin-list{
+margin-top:18px;
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:10px
+}
+
+.admin-card{
+min-width:0;
+background:#020b16;
+border:1px solid rgba(255,215,0,.18);
+border-radius:10px;
+padding:13px
+}
+
+.admin-card-name{
+color:#ffd700;
+font-size:15px;
+font-weight:900;
+margin-bottom:6px;
+overflow-wrap:anywhere
+}
+
+.admin-card-url{
+color:#91a4b8;
+font-size:11px;
+line-height:1.4;
+word-break:break-all;
+margin-bottom:12px
+}
+
+.admin-card-actions{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:6px
+}
+
+.admin-card-actions button{
+border:0;
+border-radius:6px;
+padding:9px 5px;
+cursor:pointer;
+font-weight:bold;
+font-size:11px
+}
+
 .open-btn{background:#174a72;color:white}
 .open-btn:hover{background:#216795}
+
 .edit-btn{background:#6d5a00;color:white}
 .edit-btn:hover{background:#927900}
+
 .delete-btn{background:#631c24;color:white}
 .delete-btn:hover{background:#8d2834}
-.no-admins{grid-column:1/-1;text-align:center;padding:25px;color:#718399;border:1px dashed rgba(255,215,0,.15);border-radius:9px}
-.admin-count{margin-top:12px;color:#8193a8;font-size:12px;text-align:right}
 
-.multi-controller{display:none;width:100%;background:#071525;border:1px solid rgba(255,215,0,.3);border-radius:14px;padding:15px;margin-bottom:15px;box-shadow:0 0 20px rgba(0,0,0,.3)}
-.multi-controller-header{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:14px}
-.multi-controller-title{color:#ffd700;font-size:20px;font-weight:900}
-.multi-controller-subtitle{color:#8193a8;font-size:12px;margin-top:4px}
-.multi-controller-buttons{display:flex;gap:8px;flex-wrap:wrap}
-.multi-controller-buttons button{border:0;border-radius:8px;padding:11px 15px;cursor:pointer;font-weight:900;font-size:12px}
+.no-admins{
+grid-column:1/-1;
+text-align:center;
+padding:25px;
+color:#718399;
+border:1px dashed rgba(255,215,0,.15);
+border-radius:9px
+}
+
+.admin-count{
+margin-top:12px;
+color:#8193a8;
+font-size:12px;
+text-align:right
+}
+
+.multi-controller{
+display:none;
+width:100%;
+background:#071525;
+border:1px solid rgba(255,215,0,.3);
+border-radius:14px;
+padding:15px;
+margin-bottom:15px;
+box-shadow:0 0 20px rgba(0,0,0,.3)
+}
+
+.multi-controller-header{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:14px
+}
+
+.multi-controller-title{
+color:#ffd700;
+font-size:20px;
+font-weight:900
+}
+
+.multi-controller-subtitle{
+color:#8193a8;
+font-size:12px;
+margin-top:4px
+}
+
+.multi-controller-buttons{
+display:flex;
+gap:8px;
+flex-wrap:wrap
+}
+
+.multi-controller-buttons button{
+border:0;
+border-radius:8px;
+padding:11px 15px;
+cursor:pointer;
+font-weight:900;
+font-size:12px
+}
+
 .open-all-btn{background:#ffd700;color:#020b16}
 .open-all-btn:hover{background:#fff000}
+
 .close-all-btn{background:#631c24;color:white}
 .close-all-btn:hover{background:#8d2834}
+
 .refresh-all-btn{background:#174a72;color:white}
 .refresh-all-btn:hover{background:#216795}
 
-.panel-grid{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.controller-frame{min-width:0;background:#020b16;border:1px solid rgba(255,215,0,.25);border-radius:12px;overflow:hidden;box-shadow:0 0 15px rgba(0,0,0,.35)}
-.controller-frame-header{min-height:48px;padding:8px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(135deg,#0b1c30,#020b16);border-bottom:1px solid rgba(255,215,0,.18)}
-.controller-frame-name{min-width:0;color:#ffd700;font-size:13px;font-weight:900;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.controller-frame-buttons{display:flex;gap:5px;flex-shrink:0}
-.controller-frame-buttons button{border:0;border-radius:6px;padding:7px 9px;cursor:pointer;font-size:11px;font-weight:900}
-.fullscreen-panel-btn{background:#174a72;color:white}
-.close-panel-btn{background:#631c24;color:white}
-.controller-frame iframe{display:block;width:100%;height:700px;border:0;background:#020b16}
-.controller-frame.fullscreen-active{position:fixed;z-index:999999;top:0;left:0;width:100vw;height:100vh;border-radius:0;background:#020b16}
-.controller-frame.fullscreen-active iframe{height:calc(100vh - 48px)}
-.no-panels-message{grid-column:1/-1;text-align:center;padding:45px 20px;color:#718399;border:1px dashed rgba(255,215,0,.15);border-radius:10px}
-.no-panels-message strong{display:block;color:#ffd700;font-size:16px;margin-bottom:8px}
+.panel-grid{
+width:100%;
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:14px
+}
+
+.controller-frame{
+min-width:0;
+background:#020b16;
+border:1px solid rgba(255,215,0,.25);
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 0 15px rgba(0,0,0,.35)
+}
+
+.controller-frame-header{
+min-height:48px;
+padding:8px 10px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:8px;
+background:linear-gradient(135deg,#0b1c30,#020b16);
+border-bottom:1px solid rgba(255,215,0,.18)
+}
+
+.controller-frame-name{
+min-width:0;
+color:#ffd700;
+font-size:13px;
+font-weight:900;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap
+}
+
+.controller-frame-buttons{
+display:flex;
+gap:5px;
+flex-shrink:0
+}
+
+.controller-frame-buttons button{
+border:0;
+border-radius:6px;
+padding:7px 9px;
+cursor:pointer;
+font-size:11px;
+font-weight:900
+}
+
+.fullscreen-panel-btn{
+background:#174a72;
+color:white
+}
+
+.close-panel-btn{
+background:#631c24;
+color:white
+}
+
+.controller-frame iframe{
+display:block;
+width:100%;
+height:700px;
+border:0;
+background:#020b16
+}
+
+.controller-frame.fullscreen-active{
+position:fixed;
+z-index:999999;
+top:0;
+left:0;
+width:100vw;
+height:100vh;
+border-radius:0;
+background:#020b16
+}
+
+.controller-frame.fullscreen-active iframe{
+height:calc(100vh - 48px)
+}
+
+.no-panels-message{
+grid-column:1/-1;
+text-align:center;
+padding:45px 20px;
+color:#718399;
+border:1px dashed rgba(255,215,0,.15);
+border-radius:10px
+}
+
+.no-panels-message strong{
+display:block;
+color:#ffd700;
+font-size:16px;
+margin-bottom:8px
+}
 
 @media(max-width:1100px){
 .admin-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 .panel-grid{grid-template-columns:1fr}
 }
+
 @media(max-width:900px){
 body{padding:8px}
 .admin-form{grid-template-columns:1fr}
@@ -101,22 +463,32 @@ body{padding:8px}
 .multi-controller{padding:10px}
 .controller-frame iframe{height:650px}
 }
+
 @media(max-width:500px){
 .control-header h1{font-size:22px}
 .admin-manager{padding:13px}
 .admin-card-actions{grid-template-columns:1fr 1fr 1fr}
 .multi-controller-title{font-size:17px}
 .multi-controller-buttons{width:100%}
-.multi-controller-buttons button{flex:1;min-width:0;padding:10px 6px;font-size:10px}
+.multi-controller-buttons button{
+flex:1;
+min-width:0;
+padding:10px 6px;
+font-size:10px
+}
 .controller-frame iframe{height:600px}
 .controller-frame-header{padding:8px}
 .controller-frame-name{font-size:11px}
-.controller-frame-buttons button{padding:6px 7px;font-size:9px}
+.controller-frame-buttons button{
+padding:6px 7px;
+font-size:9px
+}
 }
 </style>
 </head>
 
 <body>
+
 <div class="control-panel">
 
 <div class="control-header">
@@ -126,368 +498,1323 @@ body{padding:8px}
 
 <div id="loginBox" class="login-box">
 <h2>🔐 ADMIN LOGIN</h2>
+
 <div class="login-description">
 Sign in with your authorized Firebase administrator account to manage Admin Links.
 </div>
-<input id="loginEmail" class="login-input" type="email" autocomplete="username" placeholder="Admin Email">
-<input id="loginPassword" class="login-input" type="password" autocomplete="current-password" placeholder="Admin Password">
+
+<input
+id="loginEmail"
+class="login-input"
+type="email"
+autocomplete="username"
+placeholder="Admin Email"
+>
+
+<input
+id="loginPassword"
+class="login-input"
+type="password"
+autocomplete="current-password"
+placeholder="Admin Password"
+>
+
 <button class="login-button" onclick="loginAdmin()">🔐 LOGIN</button>
+
 <div id="loginMessage" class="login-message"></div>
 </div>
 
 <div id="adminSession" class="admin-session">
-<div id="adminSessionInfo" class="admin-session-info">🔐 Administrator logged in</div>
-<button class="logout-button" onclick="logoutAdmin()">🚪 LOGOUT</button>
+
+<div id="adminSessionInfo" class="admin-session-info">
+🔐 Administrator logged in
+</div>
+
+<button class="logout-button" onclick="logoutAdmin()">
+🚪 LOGOUT
+</button>
+
 </div>
 
 <div id="adminManager" class="admin-manager">
+
 <div class="admin-manager-title">
+
 <h2>🔗 ADMIN LINKS</h2>
-<div id="firebaseStatus" class="firebase-status">Connecting...</div>
+
+<div id="firebaseStatus" class="firebase-status">
+Connecting...
+</div>
+
 </div>
 
 <div class="admin-form">
-<input id="adminName" type="text" placeholder="Admin name e.g. News Admin" maxlength="100">
-<input id="adminUrl" type="url" placeholder="Admin link e.g. https://example.com/admin.html">
-<button id="saveAdminBtn" onclick="saveAdmin()">➕ ADD ADMIN</button>
-<button id="cancelEditBtn" class="cancel" onclick="cancelEdit()">CANCEL</button>
+
+<input
+id="adminName"
+type="text"
+placeholder="Admin name e.g. News Admin"
+maxlength="100"
+>
+
+<input
+id="adminUrl"
+type="url"
+placeholder="Admin link e.g. https://example.com/admin.html"
+>
+
+<button id="saveAdminBtn" onclick="saveAdmin()">
+➕ ADD ADMIN
+</button>
+
+<button
+id="cancelEditBtn"
+class="cancel"
+onclick="cancelEdit()"
+>
+CANCEL
+</button>
+
 </div>
 
 <div id="adminList" class="admin-list">
-<div class="no-admins">Loading Admin Links...</div>
+<div class="no-admins">
+Loading Admin Links...
+</div>
 </div>
 
-<div id="adminCount" class="admin-count">0 Admin Links</div>
+<div id="adminCount" class="admin-count">
+0 Admin Links
+</div>
+
 </div>
 
 <div id="multiController" class="multi-controller">
+
 <div class="multi-controller-header">
+
 <div>
-<div class="multi-controller-title">🎛️ MULTI-PANEL RADIO CONTROLLER</div>
-<div class="multi-controller-subtitle">Control multiple Admin Panels simultaneously</div>
+
+<div class="multi-controller-title">
+🎛️ MULTI-PANEL RADIO CONTROLLER
 </div>
+
+<div class="multi-controller-subtitle">
+Control multiple Admin Panels simultaneously
+</div>
+
+</div>
+
 <div class="multi-controller-buttons">
-<button class="open-all-btn" onclick="openAllAdmins()">🚀 OPEN ALL PANELS</button>
-<button class="refresh-all-btn" onclick="refreshAllPanels()">🔄 REFRESH ALL</button>
-<button class="close-all-btn" onclick="closeAllPanels()">✖ CLOSE ALL</button>
+
+<button
+class="open-all-btn"
+onclick="openAllAdmins()"
+>
+🚀 OPEN ALL PANELS
+</button>
+
+<button
+class="refresh-all-btn"
+onclick="refreshAllPanels()"
+>
+🔄 REFRESH ALL
+</button>
+
+<button
+class="close-all-btn"
+onclick="closeAllPanels()"
+>
+✖ CLOSE ALL
+</button>
+
 </div>
+
 </div>
 
 <div id="panelGrid" class="panel-grid">
+
 <div class="no-panels-message">
-<strong>🎛️ RADIO CONTROL CENTER READY</strong>
+
+<strong>
+🎛️ RADIO CONTROL CENTER READY
+</strong>
+
 Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.
+
 </div>
+
 </div>
+
 </div>
 
 </div>
 
 <script>
+
+/* =====================================================
+   KULZZY RADIO FIREBASE CONFIGURATION
+   CORRECT CONFIGURATION FROM FIREBASE
+   ===================================================== */
+
 const firebaseConfig = {
-apiKey:"AIzaSyA9J86PfbhuE-iv3pGFSv0-aW5x2q4J8_Y",
-authDomain:"admin-panel-controller.firebaseapp.com",
-databaseURL:"https://admin-panel-controller-default-rtdb.europe-west1.firebasedatabase.app",
-projectId:"admin-panel-controller",
-storageBucket:"admin-panel-controller.firebasestorage.app",
-messagingSenderId:"915049466099",
-appId:"1:915049466099:web:47764bb0e064f235690f86",
-measurementId:"G-L7LEMVCZXY"
+  apiKey: "AIzaSyA9J86PfbhuE-iv3pGFSv0a-W5x2q4J8_Y",
+  authDomain: "admin-panel-controller.firebaseapp.com",
+  databaseURL: "https://admin-panel-controller-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "admin-panel-controller",
+  storageBucket: "admin-panel-controller.firebasestorage.app",
+  messagingSenderId: "915049466099",
+  appId: "1:915049466099:web:47764bb0e064f235690f86",
+  measurementId: "G-L7LEMVCZXY"
 };
 
 firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
-const database=firebase.database();
 
-let adminData={};
-let editingAdminId=null;
-let adminListenerStarted=false;
+const auth = firebase.auth();
+const database = firebase.database();
 
-function setFirebaseStatus(text,online){
-const status=document.getElementById("firebaseStatus");
+let adminData = {};
+let editingAdminId = null;
+let adminListenerStarted = false;
+
+function setFirebaseStatus(text, online){
+
+const status =
+document.getElementById("firebaseStatus");
+
 if(!status)return;
-status.textContent=text;
-status.classList.remove("online","offline");
-status.classList.add(online?"online":"offline");
+
+status.textContent = text;
+
+status.classList.remove(
+"online",
+"offline"
+);
+
+status.classList.add(
+online ? "online" : "offline"
+);
+
 }
 
 function loginAdmin(){
-const email=document.getElementById("loginEmail").value.trim();
-const password=document.getElementById("loginPassword").value;
-const message=document.getElementById("loginMessage");
-message.textContent="";
-if(!email){message.textContent="Please enter your admin email.";return}
-if(!password){message.textContent="Please enter your password.";return}
-message.style.color="#ffd700";
-message.textContent="Logging in...";
-auth.signInWithEmailAndPassword(email,password).then(function(){
-message.textContent="";
-document.getElementById("loginPassword").value="";
-}).catch(function(error){
+
+const email =
+document.getElementById("loginEmail")
+.value
+.trim();
+
+const password =
+document.getElementById("loginPassword")
+.value;
+
+const message =
+document.getElementById("loginMessage");
+
+message.textContent = "";
+
+if(!email){
+
+message.textContent =
+"Please enter your admin email.";
+
+return;
+
+}
+
+if(!password){
+
+message.textContent =
+"Please enter your password.";
+
+return;
+
+}
+
+message.style.color = "#ffd700";
+
+message.textContent =
+"Logging in...";
+
+auth.signInWithEmailAndPassword(
+email,
+password
+)
+
+.then(function(){
+
+message.textContent = "";
+
+document.getElementById(
+"loginPassword"
+).value = "";
+
+})
+
+.catch(function(error){
+
 console.error(error);
-message.style.color="#ff7373";
-let errorMessage="Login failed.";
-if(error.code==="auth/invalid-credential")errorMessage="Incorrect email or password.";
-else if(error.code==="auth/user-not-found")errorMessage="Administrator account not found.";
-else if(error.code==="auth/wrong-password")errorMessage="Incorrect password.";
-else if(error.code==="auth/too-many-requests")errorMessage="Too many login attempts. Try again later.";
-else errorMessage=error.message;
-message.textContent=errorMessage;
+
+message.style.color =
+"#ff7373";
+
+let errorMessage =
+"Login failed.";
+
+if(
+error.code ===
+"auth/invalid-credential"
+){
+
+errorMessage =
+"Incorrect email or password.";
+
+}
+
+else if(
+error.code ===
+"auth/user-not-found"
+){
+
+errorMessage =
+"Administrator account not found.";
+
+}
+
+else if(
+error.code ===
+"auth/wrong-password"
+){
+
+errorMessage =
+"Incorrect password.";
+
+}
+
+else if(
+error.code ===
+"auth/too-many-requests"
+){
+
+errorMessage =
+"Too many login attempts. Try again later.";
+
+}
+
+else{
+
+errorMessage =
+error.message;
+
+}
+
+message.textContent =
+errorMessage;
+
 });
+
 }
 
 function logoutAdmin(){
-auth.signOut().then(function(){
+
+auth.signOut()
+
+.then(function(){
+
 cancelEdit();
-adminData={};
+
+adminData = {};
+
 clearAdminList();
+
 closeAllPanels();
-}).catch(function(error){console.error(error);});
+
+})
+
+.catch(function(error){
+
+console.error(error);
+
+});
+
 }
 
 auth.onAuthStateChanged(function(user){
-if(user)showLoggedIn(user);
-else showLoggedOut();
+
+if(user){
+
+showLoggedIn(user);
+
+}
+
+else{
+
+showLoggedOut();
+
+}
+
 });
 
 function showLoggedIn(user){
-document.getElementById("loginBox").style.display="none";
-document.getElementById("adminSession").style.display="flex";
-document.getElementById("adminManager").style.display="block";
-document.getElementById("multiController").style.display="block";
-document.getElementById("adminSessionInfo").textContent="🔐 Logged in: "+user.email;
-setFirebaseStatus("● Firebase Connected",true);
+
+document.getElementById(
+"loginBox"
+).style.display = "none";
+
+document.getElementById(
+"adminSession"
+).style.display = "flex";
+
+document.getElementById(
+"adminManager"
+).style.display = "block";
+
+document.getElementById(
+"multiController"
+).style.display = "block";
+
+document.getElementById(
+"adminSessionInfo"
+).textContent =
+"🔐 Logged in: " + user.email;
+
+setFirebaseStatus(
+"● Firebase Connected",
+true
+);
+
 startAdminListener();
+
 }
 
 function showLoggedOut(){
-document.getElementById("loginBox").style.display="block";
-document.getElementById("adminSession").style.display="none";
-document.getElementById("adminManager").style.display="none";
-document.getElementById("multiController").style.display="none";
+
+document.getElementById(
+"loginBox"
+).style.display = "block";
+
+document.getElementById(
+"adminSession"
+).style.display = "none";
+
+document.getElementById(
+"adminManager"
+).style.display = "none";
+
+document.getElementById(
+"multiController"
+).style.display = "none";
+
 clearAdminList();
+
 closeAllPanels();
+
 }
 
 function startAdminListener(){
-if(adminListenerStarted)database.ref("adminLinks").off();
-adminListenerStarted=true;
-database.ref("adminLinks").on("value",function(snapshot){
-adminData=snapshot.val()||{};
+
+if(adminListenerStarted){
+
+database
+.ref("adminLinks")
+.off();
+
+}
+
+adminListenerStarted = true;
+
+database
+.ref("adminLinks")
+.on(
+
+"value",
+
+function(snapshot){
+
+adminData =
+snapshot.val() || {};
+
 renderAdmins();
-setFirebaseStatus("● Database Connected",true);
-},function(error){
-console.error("Firebase database error:",error);
-setFirebaseStatus("● Database Access Error",false);
-document.getElementById("adminList").innerHTML='<div class="no-admins">⚠️ Firebase denied access.<br><br>Check your Firebase Realtime Database Rules.</div>';
-});
+
+setFirebaseStatus(
+"● Database Connected",
+true
+);
+
+},
+
+function(error){
+
+console.error(
+"Firebase database error:",
+error
+);
+
+setFirebaseStatus(
+"● Database Access Error",
+false
+);
+
+document.getElementById(
+"adminList"
+).innerHTML =
+'<div class="no-admins">' +
+'⚠️ Firebase denied access.<br><br>' +
+'Check your Firebase Realtime Database Rules.' +
+'</div>';
+
+}
+
+);
+
 }
 
 function saveAdmin(){
-const user=auth.currentUser;
-if(!user){alert("Please login first.");return}
-const name=document.getElementById("adminName").value.trim();
-const url=document.getElementById("adminUrl").value.trim();
-if(!name){alert("Please enter the admin name.");return}
-if(!url){alert("Please enter the admin link.");return}
-let finalUrl=url;
-if(!url.startsWith("https://")&&!url.startsWith("http://"))finalUrl="https://"+url;
 
-if(editingAdminId){
-database.ref("adminLinks/"+editingAdminId).update({
-name:name,url:finalUrl,
-updatedAt:firebase.database.ServerValue.TIMESTAMP,
-updatedBy:user.uid
-}).then(function(){cancelEdit();}).catch(function(error){
-console.error(error);alert("Update failed.\n\n"+error.message);
-});
+const user =
+auth.currentUser;
+
+if(!user){
+
+alert(
+"Please login first."
+);
+
 return;
+
 }
 
-database.ref("adminLinks").push({
-name:name,url:finalUrl,
-createdAt:firebase.database.ServerValue.TIMESTAMP,
-createdBy:user.uid
-}).then(function(){
-document.getElementById("adminName").value="";
-document.getElementById("adminUrl").value="";
-}).catch(function(error){
-console.error(error);alert("Unable to add admin.\n\n"+error.message);
+const name =
+document.getElementById(
+"adminName"
+).value
+.trim();
+
+const url =
+document.getElementById(
+"adminUrl"
+).value
+.trim();
+
+if(!name){
+
+alert(
+"Please enter the admin name."
+);
+
+return;
+
+}
+
+if(!url){
+
+alert(
+"Please enter the admin link."
+);
+
+return;
+
+}
+
+let finalUrl = url;
+
+if(
+!url.startsWith("https://") &&
+!url.startsWith("http://")
+){
+
+finalUrl =
+"https://" + url;
+
+}
+
+if(editingAdminId){
+
+database
+.ref(
+"adminLinks/" +
+editingAdminId
+)
+.update({
+
+name: name,
+
+url: finalUrl,
+
+updatedAt:
+firebase.database.ServerValue.TIMESTAMP,
+
+updatedBy:
+user.uid
+
+})
+
+.then(function(){
+
+cancelEdit();
+
+})
+
+.catch(function(error){
+
+console.error(error);
+
+alert(
+"Update failed.\n\n" +
+error.message
+);
+
 });
+
+return;
+
+}
+
+database
+.ref("adminLinks")
+.push({
+
+name: name,
+
+url: finalUrl,
+
+createdAt:
+firebase.database.ServerValue.TIMESTAMP,
+
+createdBy:
+user.uid
+
+})
+
+.then(function(){
+
+document.getElementById(
+"adminName"
+).value = "";
+
+document.getElementById(
+"adminUrl"
+).value = "";
+
+})
+
+.catch(function(error){
+
+console.error(error);
+
+alert(
+"Unable to add admin.\n\n" +
+error.message
+);
+
+});
+
 }
 
 function editAdmin(id){
-const admin=adminData[id];
+
+const admin =
+adminData[id];
+
 if(!admin)return;
-document.getElementById("adminName").value=admin.name||"";
-document.getElementById("adminUrl").value=admin.url||"";
-editingAdminId=id;
-document.getElementById("saveAdminBtn").textContent="💾 UPDATE ADMIN";
-document.getElementById("cancelEditBtn").style.display="block";
-document.getElementById("adminName").focus();
+
+document.getElementById(
+"adminName"
+).value =
+admin.name || "";
+
+document.getElementById(
+"adminUrl"
+).value =
+admin.url || "";
+
+editingAdminId = id;
+
+document.getElementById(
+"saveAdminBtn"
+).textContent =
+"💾 UPDATE ADMIN";
+
+document.getElementById(
+"cancelEditBtn"
+).style.display =
+"block";
+
+document.getElementById(
+"adminName"
+).focus();
+
 }
 
 function cancelEdit(){
-editingAdminId=null;
-document.getElementById("adminName").value="";
-document.getElementById("adminUrl").value="";
-document.getElementById("saveAdminBtn").textContent="➕ ADD ADMIN";
-document.getElementById("cancelEditBtn").style.display="none";
+
+editingAdminId = null;
+
+document.getElementById(
+"adminName"
+).value = "";
+
+document.getElementById(
+"adminUrl"
+).value = "";
+
+document.getElementById(
+"saveAdminBtn"
+).textContent =
+"➕ ADD ADMIN";
+
+document.getElementById(
+"cancelEditBtn"
+).style.display =
+"none";
+
 }
 
 function deleteAdmin(id){
-const user=auth.currentUser;
-if(!user){alert("Please login first.");return}
-const admin=adminData[id];
+
+const user =
+auth.currentUser;
+
+if(!user){
+
+alert(
+"Please login first."
+);
+
+return;
+
+}
+
+const admin =
+adminData[id];
+
 if(!admin)return;
-const adminName=admin.name||"this admin";
-if(!confirm('⚠️ DELETE ADMIN\n\nAre you sure you want to permanently delete "'+adminName+'"?\n\nThis cannot be undone.'))return;
-database.ref("adminLinks/"+id).remove().then(function(){
+
+const adminName =
+admin.name || "this admin";
+
+if(
+!confirm(
+'⚠️ DELETE ADMIN\n\n' +
+'Are you sure you want to permanently delete "' +
+adminName +
+'"?\n\n' +
+'This cannot be undone.'
+)
+)return;
+
+database
+.ref(
+"adminLinks/" + id
+)
+.remove()
+
+.then(function(){
+
 closePanel(id);
-if(editingAdminId===id)cancelEdit();
-alert("Admin deleted successfully.");
-}).catch(function(error){
-console.error(error);alert("Delete failed.\n\n"+error.message);
+
+if(editingAdminId === id){
+
+cancelEdit();
+
+}
+
+alert(
+"Admin deleted successfully."
+);
+
+})
+
+.catch(function(error){
+
+console.error(error);
+
+alert(
+"Delete failed.\n\n" +
+error.message
+);
+
 });
+
 }
 
 function renderAdmins(){
-const list=document.getElementById("adminList");
-const count=document.getElementById("adminCount");
-const ids=Object.keys(adminData);
-ids.sort(function(a,b){return (adminData[a].createdAt||0)-(adminData[b].createdAt||0)});
-count.textContent=ids.length+(ids.length===1?" Admin Link":" Admin Links");
 
-if(ids.length===0){
-list.innerHTML='<div class="no-admins">🔗 No admin links added yet.<br><br>Use the form above to add your first Admin Panel.</div>';
-return;
-}
-list.innerHTML="";
-ids.forEach(function(id){
-const admin=adminData[id];
-const card=document.createElement("div");
-card.className="admin-card";
-const name=escapeHtml(admin.name||"Unnamed Admin");
-const url=escapeHtml(admin.url||"");
-card.innerHTML='<div class="admin-card-name">🔗 '+name+'</div>'+
-'<div class="admin-card-url">'+url+'</div>'+
-'<div class="admin-card-actions">'+
-'<button class="open-btn" onclick="openAdmin(\''+escapeJs(id)+'\')">OPEN</button>'+
-'<button class="edit-btn" onclick="editAdmin(\''+escapeJs(id)+'\')">EDIT</button>'+
-'<button class="delete-btn" onclick="deleteAdmin(\''+escapeJs(id)+'\')">🗑️ DELETE</button>'+
-'</div>';
-list.appendChild(card);
+const list =
+document.getElementById(
+"adminList"
+);
+
+const count =
+document.getElementById(
+"adminCount"
+);
+
+const ids =
+Object.keys(adminData);
+
+ids.sort(function(a,b){
+
+return
+(adminData[a].createdAt || 0) -
+(adminData[b].createdAt || 0);
+
 });
+
+count.textContent =
+ids.length +
+(
+ids.length === 1
+?
+" Admin Link"
+:
+" Admin Links"
+);
+
+if(ids.length === 0){
+
+list.innerHTML =
+'<div class="no-admins">' +
+'🔗 No admin links added yet.<br><br>' +
+'Use the form above to add your first Admin Panel.' +
+'</div>';
+
+return;
+
+}
+
+list.innerHTML = "";
+
+ids.forEach(function(id){
+
+const admin =
+adminData[id];
+
+const card =
+document.createElement("div");
+
+card.className =
+"admin-card";
+
+const name =
+escapeHtml(
+admin.name ||
+"Unnamed Admin"
+);
+
+const url =
+escapeHtml(
+admin.url || ""
+);
+
+card.innerHTML =
+'<div class="admin-card-name">' +
+'🔗 ' +
+name +
+'</div>' +
+
+'<div class="admin-card-url">' +
+url +
+'</div>' +
+
+'<div class="admin-card-actions">' +
+
+'<button class="open-btn" ' +
+'onclick="openAdmin(\'' +
+escapeJs(id) +
+'\')">' +
+'OPEN' +
+'</button>' +
+
+'<button class="edit-btn" ' +
+'onclick="editAdmin(\'' +
+escapeJs(id) +
+'\')">' +
+'EDIT' +
+'</button>' +
+
+'<button class="delete-btn" ' +
+'onclick="deleteAdmin(\'' +
+escapeJs(id) +
+'\')">' +
+'🗑️ DELETE' +
+'</button>' +
+
+'</div>';
+
+list.appendChild(card);
+
+});
+
 }
 
 function openAdmin(id){
-const admin=adminData[id];
-if(!admin||!admin.url){alert("Admin link is not available.");return}
-createControllerPanel(id,admin);
-}
 
-function createControllerPanel(id,admin){
-const grid=document.getElementById("panelGrid");
-const existing=document.getElementById("controller-"+id);
-if(existing){
-existing.scrollIntoView({behavior:"smooth",block:"start"});
+const admin =
+adminData[id];
+
+if(
+!admin ||
+!admin.url
+){
+
+alert(
+"Admin link is not available."
+);
+
 return;
+
 }
-const emptyMessage=grid.querySelector(".no-panels-message");
-if(emptyMessage)emptyMessage.remove();
 
-const frame=document.createElement("div");
-frame.className="controller-frame";
-frame.id="controller-"+id;
+createControllerPanel(
+id,
+admin
+);
 
-const safeName=escapeHtml(admin.name||"Admin Panel");
-const safeUrl=escapeHtml(admin.url||"");
+}
 
-frame.innerHTML=
-'<div class="controller-frame-header">'+
-'<div class="controller-frame-name" title="'+safeName+'">🎛️ '+safeName+'</div>'+
-'<div class="controller-frame-buttons">'+
-'<button class="fullscreen-panel-btn" onclick="fullscreenPanel(\''+escapeJs(id)+'\')">⛶ FULL</button>'+
-'<button class="close-panel-btn" onclick="closePanel(\''+escapeJs(id)+'\')">✖</button>'+
-'</div></div>'+
-'<iframe id="iframe-'+escapeJs(id)+'" src="'+safeUrl+'" title="'+safeName+'" allow="autoplay; microphone; camera; display-capture; fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>';
+function createControllerPanel(
+id,
+admin
+){
 
-grid.appendChild(frame);
-frame.scrollIntoView({behavior:"smooth",block:"start"});
+const grid =
+document.getElementById(
+"panelGrid"
+);
+
+const existing =
+document.getElementById(
+"controller-" + id
+);
+
+if(existing){
+
+existing.scrollIntoView({
+
+behavior:
+"smooth",
+
+block:
+"start"
+
+});
+
+return;
+
+}
+
+const emptyMessage =
+grid.querySelector(
+".no-panels-message"
+);
+
+if(emptyMessage){
+
+emptyMessage.remove();
+
+}
+
+const frame =
+document.createElement(
+"div"
+);
+
+frame.className =
+"controller-frame";
+
+frame.id =
+"controller-" + id;
+
+const safeName =
+escapeHtml(
+admin.name ||
+"Admin Panel"
+);
+
+const safeUrl =
+escapeHtml(
+admin.url ||
+""
+);
+
+frame.innerHTML =
+
+'<div class="controller-frame-header">' +
+
+'<div class="controller-frame-name" ' +
+'title="' +
+safeName +
+'">' +
+
+'🎛️ ' +
+safeName +
+
+'</div>' +
+
+'<div class="controller-frame-buttons">' +
+
+'<button ' +
+'class="fullscreen-panel-btn" ' +
+'onclick="fullscreenPanel(\'' +
+escapeJs(id) +
+'\')">' +
+
+'⛶ FULL' +
+
+'</button>' +
+
+'<button ' +
+'class="close-panel-btn" ' +
+'onclick="closePanel(\'' +
+escapeJs(id) +
+'\')">' +
+
+'✖' +
+
+'</button>' +
+
+'</div>' +
+
+'</div>' +
+
+'<iframe ' +
+'id="iframe-' +
+escapeJs(id) +
+'" ' +
+'src="' +
+safeUrl +
+'" ' +
+'title="' +
+safeName +
+'" ' +
+
+'allow="autoplay; microphone; camera; display-capture; fullscreen; clipboard-read; clipboard-write" ' +
+
+'allowfullscreen>' +
+
+'</iframe>';
+
+grid.appendChild(
+frame
+);
+
+frame.scrollIntoView({
+
+behavior:
+"smooth",
+
+block:
+"start"
+
+});
+
 }
 
 function openAllAdmins(){
-const ids=Object.keys(adminData);
-if(ids.length===0){alert("No Admin Panels have been added yet.");return}
+
+const ids =
+Object.keys(adminData);
+
+if(ids.length === 0){
+
+alert(
+"No Admin Panels have been added yet."
+);
+
+return;
+
+}
+
 ids.forEach(function(id){
-const admin=adminData[id];
-if(admin&&admin.url)createControllerPanel(id,admin);
+
+const admin =
+adminData[id];
+
+if(
+admin &&
+admin.url
+){
+
+createControllerPanel(
+id,
+admin
+);
+
+}
+
 });
-document.getElementById("multiController").scrollIntoView({behavior:"smooth",block:"start"});
+
+document.getElementById(
+"multiController"
+).scrollIntoView({
+
+behavior:
+"smooth",
+
+block:
+"start"
+
+});
+
 }
 
 function closePanel(id){
-const panel=document.getElementById("controller-"+id);
+
+const panel =
+document.getElementById(
+"controller-" + id
+);
+
 if(!panel)return;
+
 panel.remove();
+
 restoreEmptyPanelMessage();
+
 }
 
 function closeAllPanels(){
-const grid=document.getElementById("panelGrid");
+
+const grid =
+document.getElementById(
+"panelGrid"
+);
+
 if(!grid)return;
-grid.innerHTML='<div class="no-panels-message"><strong>🎛️ RADIO CONTROL CENTER READY</strong>Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.</div>';
-document.body.style.overflow="";
+
+grid.innerHTML =
+'<div class="no-panels-message">' +
+
+'<strong>' +
+'🎛️ RADIO CONTROL CENTER READY' +
+'</strong>' +
+
+'Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.' +
+
+'</div>';
+
+document.body.style.overflow = "";
+
 }
 
 function restoreEmptyPanelMessage(){
-const grid=document.getElementById("panelGrid");
-if(grid&&grid.children.length===0){
-grid.innerHTML='<div class="no-panels-message"><strong>🎛️ RADIO CONTROL CENTER READY</strong>Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.</div>';
+
+const grid =
+document.getElementById(
+"panelGrid"
+);
+
+if(
+grid &&
+grid.children.length === 0
+){
+
+grid.innerHTML =
+'<div class="no-panels-message">' +
+
+'<strong>' +
+'🎛️ RADIO CONTROL CENTER READY' +
+'</strong>' +
+
+'Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.' +
+
+'</div>';
+
 }
+
 }
 
 function fullscreenPanel(id){
-const panel=document.getElementById("controller-"+id);
+
+const panel =
+document.getElementById(
+"controller-" + id
+);
+
 if(!panel)return;
-panel.classList.toggle("fullscreen-active");
-const button=panel.querySelector(".fullscreen-panel-btn");
-if(panel.classList.contains("fullscreen-active")){
-button.textContent="⛶ EXIT";
-document.body.style.overflow="hidden";
-}else{
-button.textContent="⛶ FULL";
-document.body.style.overflow="";
+
+panel.classList.toggle(
+"fullscreen-active"
+);
+
+const button =
+panel.querySelector(
+".fullscreen-panel-btn"
+);
+
+if(
+panel.classList.contains(
+"fullscreen-active"
+)
+){
+
+button.textContent =
+"⛶ EXIT";
+
+document.body.style.overflow =
+"hidden";
+
 }
+
+else{
+
+button.textContent =
+"⛶ FULL";
+
+document.body.style.overflow =
+"";
+
+}
+
 }
 
 function refreshAllPanels(){
-const frames=document.querySelectorAll(".controller-frame iframe");
-if(frames.length===0){alert("No Admin Panels are currently open.");return}
+
+const frames =
+document.querySelectorAll(
+".controller-frame iframe"
+);
+
+if(frames.length === 0){
+
+alert(
+"No Admin Panels are currently open."
+);
+
+return;
+
+}
+
 frames.forEach(function(frame){
-try{frame.contentWindow.location.reload();}
-catch(error){frame.src=frame.src;}
+
+try{
+
+frame.contentWindow.location.reload();
+
+}
+
+catch(error){
+
+frame.src =
+frame.src;
+
+}
+
 });
+
 }
 
 function clearAdminList(){
-adminData={};
-document.getElementById("adminList").innerHTML='<div class="no-admins">🔐 Login as administrator to manage Admin Links.</div>';
-document.getElementById("adminCount").textContent="0 Admin Links";
+
+adminData = {};
+
+document.getElementById(
+"adminList"
+).innerHTML =
+'<div class="no-admins">' +
+'🔐 Login as administrator to manage Admin Links.' +
+'</div>';
+
+document.getElementById(
+"adminCount"
+).textContent =
+"0 Admin Links";
+
 }
 
 function escapeHtml(value){
-return String(value).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+
+return String(value)
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+.replace(
+/</g,
+"&lt;"
+)
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+.replace(
+/'/g,
+"&#039;"
+);
+
 }
 
 function escapeJs(value){
-return String(value).replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,'\\"').replace(/\n/g,"\\n").replace(/\r/g,"\\r");
+
+return String(value)
+
+.replace(
+/\\/g,
+"\\\\"
+)
+
+.replace(
+/'/g,
+"\\'"
+)
+
+.replace(
+/"/g,
+'\\"'
+)
+
+.replace(
+/\n/g,
+"\\n"
+)
+
+.replace(
+/\r/g,
+"\\r"
+);
+
 }
 
-database.ref(".info/connected").on("value",function(snapshot){
-if(snapshot.val()===true)setFirebaseStatus("● Firebase Connected",true);
-else setFirebaseStatus("● Firebase Offline",false);
-});
+database
+.ref(".info/connected")
+.on(
+"value",
+function(snapshot){
+
+if(
+snapshot.val() === true
+){
+
+setFirebaseStatus(
+"● Firebase Connected",
+true
+);
+
+}
+
+else{
+
+setFirebaseStatus(
+"● Firebase Offline",
+false
+);
+
+}
+
+}
+);
+
 </script>
+
 </body>
 </html>
