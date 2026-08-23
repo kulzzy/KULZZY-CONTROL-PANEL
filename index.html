@@ -37,11 +37,8 @@ html,
 body {
 
     margin: 0;
-
     padding: 0;
-
     width: 100%;
-
     min-height: 100%;
 
     background: #020b16;
@@ -55,13 +52,11 @@ body {
 }
 
 body {
-
     padding: 15px;
 }
 
 button,
 input {
-
     font-family:
         Arial,
         Helvetica,
@@ -104,7 +99,7 @@ input {
 
     border-radius: 14px;
 
-    padding: 18px;
+    padding: 20px;
 
     margin-bottom: 15px;
 
@@ -259,7 +254,7 @@ input {
 
 
 /* =====================================================
-   LOGGED-IN ADMIN BAR
+   ADMIN SESSION
    ===================================================== */
 
 .admin-session {
@@ -451,10 +446,6 @@ input {
 .admin-form input:focus {
 
     border-color: #ffd700;
-
-    box-shadow:
-        0 0 0 2px
-        rgba(255,215,0,0.08);
 }
 
 .admin-form button {
@@ -548,25 +539,28 @@ input {
 
     word-break: break-all;
 
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .admin-card-actions {
 
-    display: flex;
+    display: grid;
 
-    gap: 7px;
+    grid-template-columns:
+        1fr
+        1fr
+        1fr;
+
+    gap: 6px;
 }
 
 .admin-card-actions button {
-
-    flex: 1;
 
     border: 0;
 
     border-radius: 6px;
 
-    padding: 8px 7px;
+    padding: 9px 5px;
 
     cursor: pointer;
 
@@ -582,11 +576,21 @@ input {
     color: white;
 }
 
+.open-btn:hover {
+
+    background: #216795;
+}
+
 .edit-btn {
 
     background: #6d5a00;
 
     color: white;
+}
+
+.edit-btn:hover {
+
+    background: #927900;
 }
 
 .delete-btn {
@@ -596,13 +600,18 @@ input {
     color: white;
 }
 
+.delete-btn:hover {
+
+    background: #8d2834;
+}
+
 .no-admins {
 
     grid-column: 1 / -1;
 
     text-align: center;
 
-    padding: 18px;
+    padding: 25px;
 
     color: #718399;
 
@@ -615,214 +624,18 @@ input {
 
 
 /* =====================================================
-   8 PANEL GRID
+   ADMIN COUNT
    ===================================================== */
 
-.panel-grid {
+.admin-count {
 
-    display: grid;
+    margin-top: 12px;
 
-    grid-template-columns:
-        repeat(
-            2,
-            minmax(0,1fr)
-        );
-
-    gap: 15px;
-
-    width: 100%;
-}
-
-.panel {
-
-    width: 100%;
-
-    min-width: 0;
-
-    height: 650px;
-
-    background: #071525;
-
-    border:
-        1px solid
-        rgba(255,215,0,0.25);
-
-    border-radius: 12px;
-
-    overflow: hidden;
-}
-
-.panel iframe {
-
-    display: block;
-
-    width: 100%;
-
-    height: 100%;
-
-    border: 0;
-
-    margin: 0;
-
-    padding: 0;
-
-    background: #071525;
-}
-
-
-/* =====================================================
-   DYNAMIC PANELS
-   ===================================================== */
-
-.dynamic-admin-panel {
-
-    position: relative;
-
-    padding: 0;
-
-    overflow: hidden;
-}
-
-.dynamic-placeholder {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    height: 100%;
-
-    width: 100%;
-
-    text-align: center;
-
-    padding: 25px;
-}
-
-.dynamic-placeholder .icon {
-
-    font-size: 42px;
-
-    margin-bottom: 12px;
-}
-
-.dynamic-placeholder .title {
-
-    color: #ffd700;
-
-    font-size: 17px;
-
-    font-weight: 900;
-
-    margin-bottom: 8px;
-}
-
-.dynamic-placeholder .text {
-
-    color: #72859a;
+    color: #8193a8;
 
     font-size: 12px;
 
-    line-height: 1.5;
-
-    max-width: 300px;
-}
-
-
-/* =====================================================
-   EXTRA ADMIN LINKS
-   ===================================================== */
-
-.extra-admin-section {
-
-    display: none;
-
-    margin-top: 15px;
-
-    background: #071525;
-
-    border:
-        1px solid
-        rgba(255,215,0,0.25);
-
-    border-radius: 14px;
-
-    padding: 18px;
-}
-
-.extra-admin-section h2 {
-
-    margin:
-        0 0 14px;
-
-    color: #ffd700;
-
-    font-size: 20px;
-}
-
-.extra-admin-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            4,
-            minmax(0,1fr)
-        );
-
-    gap: 10px;
-}
-
-.extra-link {
-
-    display: block;
-
-    text-decoration: none;
-
-    background: #020b16;
-
-    border:
-        1px solid
-        rgba(255,215,0,0.2);
-
-    border-radius: 9px;
-
-    padding: 13px;
-
-    transition: 0.2s;
-}
-
-.extra-link:hover {
-
-    border-color: #ffd700;
-
-    transform:
-        translateY(-2px);
-}
-
-.extra-link-title {
-
-    color: #ffd700;
-
-    font-weight: 900;
-
-    font-size: 14px;
-
-    margin-bottom: 5px;
-}
-
-.extra-link-url {
-
-    color: #718399;
-
-    font-size: 10px;
-
-    word-break: break-all;
-
-    line-height: 1.4;
+    text-align: right;
 }
 
 
@@ -832,8 +645,7 @@ input {
 
 @media (max-width: 1100px) {
 
-    .admin-list,
-    .extra-admin-grid {
+    .admin-list {
 
         grid-template-columns:
             repeat(
@@ -851,27 +663,20 @@ input {
         padding: 8px;
     }
 
-    .panel-grid {
-
-        grid-template-columns: 1fr;
-
-        gap: 10px;
-    }
-
-    .panel {
-
-        height: 650px;
-    }
-
     .admin-form {
 
         grid-template-columns: 1fr;
     }
 
-    .admin-list,
-    .extra-admin-grid {
+    .admin-list {
 
         grid-template-columns: 1fr;
+    }
+
+    .admin-card-actions {
+
+        grid-template-columns:
+            repeat(3,1fr);
     }
 }
 
@@ -888,9 +693,12 @@ input {
         padding: 13px;
     }
 
-    .panel {
+    .admin-card-actions {
 
-        height: 650px;
+        grid-template-columns:
+            1fr
+            1fr
+            1fr;
     }
 }
 
@@ -1038,7 +846,8 @@ input {
         <input
             id="adminName"
             type="text"
-            placeholder="Admin name e.g. News Admin">
+            placeholder="Admin name e.g. News Admin"
+            maxlength="100">
 
 
         <input
@@ -1074,220 +883,19 @@ input {
 
         <div class="no-admins">
 
-            Login to manage admin links.
+            Loading Admin Links...
 
         </div>
 
     </div>
 
-</div>
-
-
-<!-- =====================================================
-     8 PANELS
-     ===================================================== -->
-
-<div class="panel-grid">
-
-
-<!-- =====================================================
-     PANEL 1
-     ===================================================== -->
-
-<div class="panel">
-
-    <iframe
-        src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/upload.html"
-        title="Kulzzy Upload Manager"
-        loading="eager">
-    </iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 2
-     ===================================================== -->
-
-<div class="panel">
-
-    <iframe
-        src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/admin.html"
-        title="Kulzzy Radio Admin"
-        loading="eager">
-    </iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 3
-     ===================================================== -->
-
-<div class="panel">
-
-    <iframe
-        src="https://donshangti2.github.io/Live-on-air-/admin.html?utm_source=chatgpt.com"
-        title="Kulzzy Live On Air Admin"
-        loading="eager">
-    </iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 4
-     ===================================================== -->
-
-<div class="panel">
-
-    <iframe
-        src="https://donshangti2.github.io/kulzzy-celebrant-slider/admin.html?utm_source=chatgpt.com"
-        title="Kulzzy Celebrant Slider Admin"
-        loading="eager">
-    </iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 5
-     ===================================================== -->
-
-<div
-    id="dynamicPanel5"
-    class="panel dynamic-admin-panel">
-
-    <div class="dynamic-placeholder">
-
-        <div class="icon">
-            🔗
-        </div>
-
-        <div class="title">
-            ADMIN PANEL 5
-        </div>
-
-        <div class="text">
-            Add an admin link after logging in.
-            It will automatically appear here.
-        </div>
-
-    </div>
-
-    <iframe></iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 6
-     ===================================================== -->
-
-<div
-    id="dynamicPanel6"
-    class="panel dynamic-admin-panel">
-
-    <div class="dynamic-placeholder">
-
-        <div class="icon">
-            🔗
-        </div>
-
-        <div class="title">
-            ADMIN PANEL 6
-        </div>
-
-        <div class="text">
-            Add another admin system and it
-            will automatically appear here.
-        </div>
-
-    </div>
-
-    <iframe></iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 7
-     ===================================================== -->
-
-<div
-    id="dynamicPanel7"
-    class="panel dynamic-admin-panel">
-
-    <div class="dynamic-placeholder">
-
-        <div class="icon">
-            🔗
-        </div>
-
-        <div class="title">
-            ADMIN PANEL 7
-        </div>
-
-        <div class="text">
-            Your next admin system can be
-            added without editing this HTML.
-        </div>
-
-    </div>
-
-    <iframe></iframe>
-
-</div>
-
-
-<!-- =====================================================
-     PANEL 8
-     ===================================================== -->
-
-<div
-    id="dynamicPanel8"
-    class="panel dynamic-admin-panel">
-
-    <div class="dynamic-placeholder">
-
-        <div class="icon">
-            🔗
-        </div>
-
-        <div class="title">
-            ADMIN PANEL 8
-        </div>
-
-        <div class="text">
-            Your next admin system can be
-            added without changing this code.
-        </div>
-
-    </div>
-
-    <iframe></iframe>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     EXTRA ADMIN SYSTEMS
-     ===================================================== -->
-
-<div
-    id="extraAdminSection"
-    class="extra-admin-section">
-
-    <h2>
-        📂 OTHER ADMIN SYSTEMS
-    </h2>
 
     <div
-        id="extraAdminGrid"
-        class="extra-admin-grid">
+        id="adminCount"
+        class="admin-count">
+
+        0 Admin Links
+
     </div>
 
 </div>
@@ -1336,10 +944,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-
 const auth =
     firebase.auth();
-
 
 const database =
     firebase.database();
@@ -1353,20 +959,21 @@ let adminData = {};
 
 let editingAdminId = null;
 
+let adminListenerStarted = false;
+
 
 /* =====================================================
    FIREBASE STATUS
    ===================================================== */
 
-function setFirebaseStatus(
-    text,
-    online
-) {
+function setFirebaseStatus(text, online) {
 
     const status =
         document.getElementById(
             "firebaseStatus"
         );
+
+    if (!status) return;
 
     status.textContent =
         text;
@@ -1402,22 +1009,18 @@ function loginAdmin() {
             "loginEmail"
         ).value.trim();
 
-
     const password =
         document.getElementById(
             "loginPassword"
         ).value;
-
 
     const message =
         document.getElementById(
             "loginMessage"
         );
 
-
     message.textContent =
         "";
-
 
     if (!email) {
 
@@ -1427,7 +1030,6 @@ function loginAdmin() {
         return;
     }
 
-
     if (!password) {
 
         message.textContent =
@@ -1436,10 +1038,11 @@ function loginAdmin() {
         return;
     }
 
+    message.style.color =
+        "#ffd700";
 
     message.textContent =
         "Logging in...";
-
 
     auth
         .signInWithEmailAndPassword(
@@ -1460,10 +1063,11 @@ function loginAdmin() {
 
             console.error(error);
 
+            message.style.color =
+                "#ff7373";
 
             let errorMessage =
                 "Login failed.";
-
 
             if (
                 error.code ===
@@ -1495,14 +1099,13 @@ function loginAdmin() {
             ) {
 
                 errorMessage =
-                    "Too many login attempts. Please try again later.";
+                    "Too many login attempts. Try again later.";
 
             } else {
 
                 errorMessage =
                     error.message;
             }
-
 
             message.textContent =
                 errorMessage;
@@ -1524,7 +1127,7 @@ function logoutAdmin() {
 
             adminData = {};
 
-            clearAdminPanels();
+            clearAdminList();
 
         })
         .catch(function(error) {
@@ -1567,18 +1170,15 @@ function showLoggedIn(user) {
     ).style.display =
         "none";
 
-
     document.getElementById(
         "adminSession"
     ).style.display =
         "flex";
 
-
     document.getElementById(
         "adminManager"
     ).style.display =
         "block";
-
 
     document.getElementById(
         "adminSessionInfo"
@@ -1586,12 +1186,10 @@ function showLoggedIn(user) {
         "🔐 Logged in: " +
         user.email;
 
-
     setFirebaseStatus(
         "● Firebase Connected",
         true
     );
-
 
     startAdminListener();
 }
@@ -1608,20 +1206,17 @@ function showLoggedOut() {
     ).style.display =
         "block";
 
-
     document.getElementById(
         "adminSession"
     ).style.display =
         "none";
-
 
     document.getElementById(
         "adminManager"
     ).style.display =
         "none";
 
-
-    clearAdminPanels();
+    clearAdminList();
 }
 
 
@@ -1631,10 +1226,16 @@ function showLoggedOut() {
 
 function startAdminListener() {
 
-    database
-        .ref("adminLinks")
-        .off();
+    if (adminListenerStarted) {
 
+        database
+            .ref("adminLinks")
+            .off();
+
+    }
+
+    adminListenerStarted =
+        true;
 
     database
         .ref("adminLinks")
@@ -1663,12 +1264,10 @@ function startAdminListener() {
                     error
                 );
 
-
                 setFirebaseStatus(
                     "● Database Access Error",
                     false
                 );
-
 
                 document.getElementById(
                     "adminList"
@@ -1680,13 +1279,13 @@ function startAdminListener() {
 
                         <br><br>
 
-                        Make sure your Firebase
-                        Realtime Database rules contain
-                        your administrator UID.
+                        Check your Firebase
+                        Realtime Database Rules.
 
                     </div>
 
                 `;
+
             }
         );
 }
@@ -1701,28 +1300,24 @@ function saveAdmin() {
     const user =
         auth.currentUser;
 
-
     if (!user) {
 
         alert(
-            "Please login as administrator first."
+            "Please login first."
         );
 
         return;
     }
-
 
     const name =
         document.getElementById(
             "adminName"
         ).value.trim();
 
-
     const url =
         document.getElementById(
             "adminUrl"
         ).value.trim();
-
 
     if (!name) {
 
@@ -1733,7 +1328,6 @@ function saveAdmin() {
         return;
     }
 
-
     if (!url) {
 
         alert(
@@ -1743,10 +1337,8 @@ function saveAdmin() {
         return;
     }
 
-
     let finalUrl =
         url;
-
 
     if (
         !url.startsWith("https://") &&
@@ -1759,7 +1351,7 @@ function saveAdmin() {
 
 
     /* =================================================
-       UPDATE
+       UPDATE EXISTING ADMIN
        ================================================= */
 
     if (editingAdminId) {
@@ -1780,14 +1372,13 @@ function saveAdmin() {
                 updatedAt:
                     firebase.database
                         .ServerValue
-                        .TIMESTAMP
+                        .TIMESTAMP,
+
+                updatedBy:
+                    user.uid
 
             })
             .then(function() {
-
-                alert(
-                    "Admin link updated successfully."
-                );
 
                 cancelEdit();
 
@@ -1808,7 +1399,7 @@ function saveAdmin() {
 
 
     /* =================================================
-       ADD
+       ADD NEW ADMIN
        ================================================= */
 
     database
@@ -1824,7 +1415,10 @@ function saveAdmin() {
             createdAt:
                 firebase.database
                     .ServerValue
-                    .TIMESTAMP
+                    .TIMESTAMP,
+
+            createdBy:
+                user.uid
 
         })
         .then(function() {
@@ -1832,7 +1426,6 @@ function saveAdmin() {
             document.getElementById(
                 "adminName"
             ).value = "";
-
 
             document.getElementById(
                 "adminUrl"
@@ -1861,42 +1454,34 @@ function editAdmin(id) {
     const admin =
         adminData[id];
 
-
     if (!admin) return;
-
 
     document.getElementById(
         "adminName"
     ).value =
         admin.name || "";
 
-
     document.getElementById(
         "adminUrl"
     ).value =
         admin.url || "";
 
-
     editingAdminId =
         id;
-
 
     document.getElementById(
         "saveAdminBtn"
     ).textContent =
         "💾 UPDATE ADMIN";
 
-
     document.getElementById(
         "cancelEditBtn"
     ).style.display =
         "block";
 
-
     document.getElementById(
         "adminName"
     ).focus();
-
 }
 
 
@@ -1909,24 +1494,20 @@ function cancelEdit() {
     editingAdminId =
         null;
 
-
     document.getElementById(
         "adminName"
     ).value =
         "";
-
 
     document.getElementById(
         "adminUrl"
     ).value =
         "";
 
-
     document.getElementById(
         "saveAdminBtn"
     ).textContent =
         "➕ ADD ADMIN";
-
 
     document.getElementById(
         "cancelEditBtn"
@@ -1941,22 +1522,43 @@ function cancelEdit() {
 
 function deleteAdmin(id) {
 
+    const user =
+        auth.currentUser;
+
+    if (!user) {
+
+        alert(
+            "Please login first."
+        );
+
+        return;
+    }
+
     const admin =
         adminData[id];
-
 
     if (!admin) return;
 
 
+    const adminName =
+        admin.name ||
+        "this admin";
+
+
     const confirmed =
         confirm(
-            'Delete "' +
-            (admin.name || "this admin") +
-            '"?'
+            '⚠️ DELETE ADMIN\n\n' +
+            'Are you sure you want to permanently delete "' +
+            adminName +
+            '"?\n\n' +
+            'This cannot be undone.'
         );
 
 
-    if (!confirmed) return;
+    if (!confirmed) {
+
+        return;
+    }
 
 
     database
@@ -1965,6 +1567,7 @@ function deleteAdmin(id) {
             id
         )
         .remove()
+
         .then(function() {
 
             if (
@@ -1975,7 +1578,12 @@ function deleteAdmin(id) {
 
             }
 
+            alert(
+                "Admin deleted successfully."
+            );
+
         })
+
         .catch(function(error) {
 
             console.error(error);
@@ -2000,6 +1608,10 @@ function renderAdmins() {
             "adminList"
         );
 
+    const count =
+        document.getElementById(
+            "adminCount"
+        );
 
     const ids =
         Object.keys(
@@ -2008,7 +1620,7 @@ function renderAdmins() {
 
 
     ids.sort(
-        function(a,b) {
+        function(a, b) {
 
             return (
                 (adminData[a].createdAt || 0)
@@ -2020,6 +1632,15 @@ function renderAdmins() {
     );
 
 
+    count.textContent =
+        ids.length +
+        (
+            ids.length === 1
+            ? " Admin Link"
+            : " Admin Links"
+        );
+
+
     if (ids.length === 0) {
 
         list.innerHTML = `
@@ -2028,13 +1649,14 @@ function renderAdmins() {
 
                 🔗 No admin links added yet.
 
+                <br><br>
+
+                Use the form above to add
+                your first Admin Panel.
+
             </div>
 
         `;
-
-        renderDynamicPanels([]);
-
-        renderExtraLinks([]);
 
         return;
     }
@@ -2050,35 +1672,41 @@ function renderAdmins() {
             const admin =
                 adminData[id];
 
-
             const card =
                 document.createElement(
                     "div"
                 );
 
-
             card.className =
                 "admin-card";
+
+
+            const name =
+                escapeHtml(
+                    admin.name ||
+                    "Unnamed Admin"
+                );
+
+
+            const url =
+                escapeHtml(
+                    admin.url ||
+                    ""
+                );
 
 
             card.innerHTML = `
 
                 <div class="admin-card-name">
 
-                    ${escapeHtml(
-                        admin.name ||
-                        "Unnamed Admin"
-                    )}
+                    🔗 ${name}
 
                 </div>
 
 
                 <div class="admin-card-url">
 
-                    ${escapeHtml(
-                        admin.url ||
-                        ""
-                    )}
+                    ${url}
 
                 </div>
 
@@ -2107,7 +1735,7 @@ function renderAdmins() {
                         class="delete-btn"
                         onclick="deleteAdmin('${escapeJs(id)}')">
 
-                        DELETE
+                        🗑️ DELETE
 
                     </button>
 
@@ -2118,221 +1746,6 @@ function renderAdmins() {
 
             list.appendChild(
                 card
-            );
-
-        }
-    );
-
-
-    renderDynamicPanels(ids);
-
-    renderExtraLinks(ids);
-}
-
-
-/* =====================================================
-   DYNAMIC PANELS 5–8
-   ===================================================== */
-
-function renderDynamicPanels(ids) {
-
-    const panelIds = [
-
-        "dynamicPanel5",
-
-        "dynamicPanel6",
-
-        "dynamicPanel7",
-
-        "dynamicPanel8"
-
-    ];
-
-
-    panelIds.forEach(
-        function(panelId,index) {
-
-            const panel =
-                document.getElementById(
-                    panelId
-                );
-
-
-            const placeholder =
-                panel.querySelector(
-                    ".dynamic-placeholder"
-                );
-
-
-            const iframe =
-                panel.querySelector(
-                    "iframe"
-                );
-
-
-            const adminId =
-                ids[index];
-
-
-            if (!adminId) {
-
-                placeholder.style.display =
-                    "flex";
-
-
-                iframe.style.display =
-                    "none";
-
-
-                iframe.removeAttribute(
-                    "src"
-                );
-
-
-                return;
-            }
-
-
-            const admin =
-                adminData[adminId];
-
-
-            if (
-                !admin ||
-                !admin.url
-            ) {
-
-                return;
-            }
-
-
-            placeholder.style.display =
-                "none";
-
-
-            iframe.style.display =
-                "block";
-
-
-            iframe.src =
-                admin.url;
-
-
-            iframe.title =
-                admin.name ||
-                "Kulzzy Admin Panel";
-
-        }
-    );
-}
-
-
-/* =====================================================
-   EXTRA LINKS
-   ===================================================== */
-
-function renderExtraLinks(ids) {
-
-    const section =
-        document.getElementById(
-            "extraAdminSection"
-        );
-
-
-    const grid =
-        document.getElementById(
-            "extraAdminGrid"
-        );
-
-
-    const extraIds =
-        ids.slice(4);
-
-
-    if (
-        extraIds.length === 0
-    ) {
-
-        section.style.display =
-            "none";
-
-
-        grid.innerHTML =
-            "";
-
-
-        return;
-    }
-
-
-    section.style.display =
-        "block";
-
-
-    grid.innerHTML =
-        "";
-
-
-    extraIds.forEach(
-        function(id) {
-
-            const admin =
-                adminData[id];
-
-
-            if (!admin) return;
-
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-
-            link.className =
-                "extra-link";
-
-
-            link.href =
-                admin.url ||
-                "#";
-
-
-            link.target =
-                "_blank";
-
-
-            link.rel =
-                "noopener noreferrer";
-
-
-            link.innerHTML = `
-
-                <div class="extra-link-title">
-
-                    🔗
-                    ${escapeHtml(
-                        admin.name ||
-                        "Admin Panel"
-                    )}
-
-                </div>
-
-
-                <div class="extra-link-url">
-
-                    ${escapeHtml(
-                        admin.url ||
-                        ""
-                    )}
-
-                </div>
-
-            `;
-
-
-            grid.appendChild(
-                link
             );
 
         }
@@ -2348,7 +1761,6 @@ function openAdmin(id) {
 
     const admin =
         adminData[id];
-
 
     if (
         !admin ||
@@ -2372,63 +1784,12 @@ function openAdmin(id) {
 
 
 /* =====================================================
-   CLEAR PANELS WHEN LOGGED OUT
+   CLEAR ADMIN LIST
    ===================================================== */
 
-function clearAdminPanels() {
+function clearAdminList() {
 
-    const panelIds = [
-
-        "dynamicPanel5",
-
-        "dynamicPanel6",
-
-        "dynamicPanel7",
-
-        "dynamicPanel8"
-
-    ];
-
-
-    panelIds.forEach(
-        function(id) {
-
-            const panel =
-                document.getElementById(
-                    id
-                );
-
-
-            if (!panel) return;
-
-
-            const placeholder =
-                panel.querySelector(
-                    ".dynamic-placeholder"
-                );
-
-
-            const iframe =
-                panel.querySelector(
-                    "iframe"
-                );
-
-
-            placeholder.style.display =
-                "flex";
-
-
-            iframe.style.display =
-                "none";
-
-
-            iframe.removeAttribute(
-                "src"
-            );
-
-        }
-    );
-
+    adminData = {};
 
     document.getElementById(
         "adminList"
@@ -2445,9 +1806,9 @@ function clearAdminPanels() {
 
 
     document.getElementById(
-        "extraAdminSection"
-    ).style.display =
-        "none";
+        "adminCount"
+    ).textContent =
+        "0 Admin Links";
 }
 
 
@@ -2551,7 +1912,6 @@ database
 
         }
     );
-
 
 </script>
 
