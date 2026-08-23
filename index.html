@@ -1,720 +1,1297 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
 <title>Kulzzy Radio Control Panel</title>
+
 
 <!-- =====================================================
      FIREBASE
      ===================================================== -->
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
+
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    html,
+/* =====================================================
+   GLOBAL
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    width: 100%;
+
+    min-height: 100%;
+
+    background: #020b16;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: white;
+}
+
+body {
+
+    padding: 15px;
+}
+
+button,
+input {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+
+/* =====================================================
+   MAIN CONTAINER
+   ===================================================== */
+
+.control-panel {
+
+    width: 100%;
+
+    max-width: 1600px;
+
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.control-header {
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #071525,
+            #020b16
+        );
+
+    border:
+        1px solid
+        rgba(255,215,0,0.35);
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+
+    text-align: center;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,0,0,0.35);
+}
+
+.control-header h1 {
+
+    margin: 0;
+
+    color: #ffd700;
+
+    font-size: 28px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.control-header p {
+
+    margin: 7px 0 0;
+
+    color: #b9c7d6;
+
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   LOGIN BOX
+   ===================================================== */
+
+.login-box {
+
+    width: 100%;
+
+    max-width: 520px;
+
+    margin: 0 auto 15px;
+
+    background: #071525;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.35);
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 0 20px
+        rgba(0,0,0,0.3);
+}
+
+.login-box h2 {
+
+    margin:
+        0 0 8px;
+
+    color: #ffd700;
+
+    text-align: center;
+
+    font-size: 21px;
+}
+
+.login-description {
+
+    color: #8193a8;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+.login-input {
+
+    width: 100%;
+
+    padding: 13px;
+
+    margin-bottom: 10px;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.25);
+
+    border-radius: 8px;
+
+    background: #020b16;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.login-input:focus {
+
+    border-color: #ffd700;
+}
+
+.login-button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background: #ffd700;
+
+    color: #020b16;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.login-button:hover {
+
+    background: #fff000;
+}
+
+.login-message {
+
+    margin-top: 12px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #ff7373;
+
+    min-height: 15px;
+}
+
+
+/* =====================================================
+   LOGGED-IN ADMIN BAR
+   ===================================================== */
+
+.admin-session {
+
+    display: none;
+
+    width: 100%;
+
+    background: #071525;
+
+    border:
+        1px solid
+        rgba(69,255,154,0.25);
+
+    border-radius: 14px;
+
+    padding: 13px 16px;
+
+    margin-bottom: 15px;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.admin-session-info {
+
+    color: #45ff9a;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.logout-button {
+
+    border: 0;
+
+    border-radius: 7px;
+
+    padding: 9px 14px;
+
+    background: #631c24;
+
+    color: white;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    font-size: 12px;
+}
+
+.logout-button:hover {
+
+    background: #852631;
+}
+
+
+/* =====================================================
+   ADMIN MANAGER
+   ===================================================== */
+
+.admin-manager {
+
+    display: none;
+
+    width: 100%;
+
+    background: #071525;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.3);
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 15px;
+}
+
+.admin-manager-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 15px;
+}
+
+.admin-manager-title h2 {
+
+    margin: 0;
+
+    color: #ffd700;
+
+    font-size: 20px;
+}
+
+.firebase-status {
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    background: #172334;
+
+    color: #aaa;
+}
+
+.firebase-status.online {
+
+    background:
+        rgba(0,180,80,0.15);
+
+    color: #45ff9a;
+
+    border:
+        1px solid
+        rgba(69,255,154,0.25);
+}
+
+.firebase-status.offline {
+
+    background:
+        rgba(255,60,60,0.12);
+
+    color: #ff7070;
+}
+
+
+/* =====================================================
+   ADMIN FORM
+   ===================================================== */
+
+.admin-form {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1.5fr
+        auto
+        auto;
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+.admin-form input {
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 13px 14px;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.25);
+
+    border-radius: 8px;
+
+    background: #020b16;
+
+    color: white;
+
+    outline: none;
+
+    font-size: 14px;
+}
+
+.admin-form input:focus {
+
+    border-color: #ffd700;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(255,215,0,0.08);
+}
+
+.admin-form button {
+
+    border: 0;
+
+    border-radius: 8px;
+
+    padding: 13px 18px;
+
+    background: #ffd700;
+
+    color: #020b16;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.admin-form button:hover {
+
+    background: #fff000;
+}
+
+.admin-form button.cancel {
+
+    background: #273548;
+
+    color: white;
+
+    display: none;
+}
+
+
+/* =====================================================
+   ADMIN LIST
+   ===================================================== */
+
+.admin-list {
+
+    margin-top: 18px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0,1fr)
+        );
+
+    gap: 10px;
+}
+
+.admin-card {
+
+    min-width: 0;
+
+    background: #020b16;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.18);
+
+    border-radius: 10px;
+
+    padding: 13px;
+}
+
+.admin-card-name {
+
+    color: #ffd700;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    margin-bottom: 6px;
+
+    overflow-wrap: anywhere;
+}
+
+.admin-card-url {
+
+    color: #91a4b8;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    word-break: break-all;
+
+    margin-bottom: 10px;
+}
+
+.admin-card-actions {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.admin-card-actions button {
+
+    flex: 1;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    padding: 8px 7px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-size: 11px;
+}
+
+.open-btn {
+
+    background: #174a72;
+
+    color: white;
+}
+
+.edit-btn {
+
+    background: #6d5a00;
+
+    color: white;
+}
+
+.delete-btn {
+
+    background: #631c24;
+
+    color: white;
+}
+
+.no-admins {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 18px;
+
+    color: #718399;
+
+    border:
+        1px dashed
+        rgba(255,215,0,0.15);
+
+    border-radius: 9px;
+}
+
+
+/* =====================================================
+   8 PANEL GRID
+   ===================================================== */
+
+.panel-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0,1fr)
+        );
+
+    gap: 15px;
+
+    width: 100%;
+}
+
+.panel {
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 650px;
+
+    background: #071525;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.25);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.panel iframe {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    border: 0;
+
+    margin: 0;
+
+    padding: 0;
+
+    background: #071525;
+}
+
+
+/* =====================================================
+   DYNAMIC PANELS
+   ===================================================== */
+
+.dynamic-admin-panel {
+
+    position: relative;
+
+    padding: 0;
+
+    overflow: hidden;
+}
+
+.dynamic-placeholder {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 100%;
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 25px;
+}
+
+.dynamic-placeholder .icon {
+
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+.dynamic-placeholder .title {
+
+    color: #ffd700;
+
+    font-size: 17px;
+
+    font-weight: 900;
+
+    margin-bottom: 8px;
+}
+
+.dynamic-placeholder .text {
+
+    color: #72859a;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    max-width: 300px;
+}
+
+
+/* =====================================================
+   EXTRA ADMIN LINKS
+   ===================================================== */
+
+.extra-admin-section {
+
+    display: none;
+
+    margin-top: 15px;
+
+    background: #071525;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.25);
+
+    border-radius: 14px;
+
+    padding: 18px;
+}
+
+.extra-admin-section h2 {
+
+    margin:
+        0 0 14px;
+
+    color: #ffd700;
+
+    font-size: 20px;
+}
+
+.extra-admin-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0,1fr)
+        );
+
+    gap: 10px;
+}
+
+.extra-link {
+
+    display: block;
+
+    text-decoration: none;
+
+    background: #020b16;
+
+    border:
+        1px solid
+        rgba(255,215,0,0.2);
+
+    border-radius: 9px;
+
+    padding: 13px;
+
+    transition: 0.2s;
+}
+
+.extra-link:hover {
+
+    border-color: #ffd700;
+
+    transform:
+        translateY(-2px);
+}
+
+.extra-link-title {
+
+    color: #ffd700;
+
+    font-weight: 900;
+
+    font-size: 14px;
+
+    margin-bottom: 5px;
+}
+
+.extra-link-url {
+
+    color: #718399;
+
+    font-size: 10px;
+
+    word-break: break-all;
+
+    line-height: 1.4;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 1100px) {
+
+    .admin-list,
+    .extra-admin-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0,1fr)
+            );
+    }
+}
+
+
+@media (max-width: 900px) {
+
     body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-        background: #020b16;
-        font-family: Arial, Helvetica, sans-serif;
-        color: white;
+
+        padding: 8px;
     }
-
-    body {
-        padding: 15px;
-    }
-
-    .control-panel {
-        width: 100%;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
-
-    /* =====================================================
-       HEADER
-       ===================================================== */
-
-    .control-header {
-        width: 100%;
-        background: linear-gradient(135deg, #071525, #020b16);
-        border: 1px solid rgba(255, 215, 0, 0.35);
-        border-radius: 14px;
-        padding: 18px;
-        margin-bottom: 15px;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
-    }
-
-    .control-header h1 {
-        margin: 0;
-        color: #ffd700;
-        font-size: 28px;
-        font-weight: 900;
-        letter-spacing: 1px;
-    }
-
-    .control-header p {
-        margin: 7px 0 0;
-        color: #b9c7d6;
-        font-size: 14px;
-    }
-
-    /* =====================================================
-       ADMIN LINKS MANAGER
-       ===================================================== */
-
-    .admin-manager {
-        width: 100%;
-        background: #071525;
-        border: 1px solid rgba(255, 215, 0, 0.3);
-        border-radius: 14px;
-        padding: 18px;
-        margin-bottom: 15px;
-    }
-
-    .admin-manager-title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 15px;
-    }
-
-    .admin-manager-title h2 {
-        margin: 0;
-        color: #ffd700;
-        font-size: 20px;
-    }
-
-    .firebase-status {
-        font-size: 12px;
-        font-weight: bold;
-        padding: 7px 10px;
-        border-radius: 20px;
-        background: #172334;
-        color: #aaa;
-    }
-
-    .firebase-status.online {
-        background: rgba(0, 180, 80, 0.15);
-        color: #45ff9a;
-        border: 1px solid rgba(69, 255, 154, 0.25);
-    }
-
-    .firebase-status.offline {
-        background: rgba(255, 60, 60, 0.12);
-        color: #ff7070;
-    }
-
-    .admin-form {
-        display: grid;
-        grid-template-columns: 1fr 1.5fr auto;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .admin-form input {
-        width: 100%;
-        min-width: 0;
-        padding: 13px 14px;
-        border: 1px solid rgba(255, 215, 0, 0.25);
-        border-radius: 8px;
-        background: #020b16;
-        color: white;
-        outline: none;
-        font-size: 14px;
-    }
-
-    .admin-form input:focus {
-        border-color: #ffd700;
-        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.08);
-    }
-
-    .admin-form button {
-        border: 0;
-        border-radius: 8px;
-        padding: 13px 18px;
-        background: #ffd700;
-        color: #020b16;
-        font-weight: 900;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-
-    .admin-form button:hover {
-        background: #fff000;
-    }
-
-    .admin-form button.cancel {
-        background: #273548;
-        color: white;
-        display: none;
-    }
-
-    .admin-list {
-        margin-top: 18px;
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
-    }
-
-    .admin-card {
-        min-width: 0;
-        background: #020b16;
-        border: 1px solid rgba(255, 215, 0, 0.18);
-        border-radius: 10px;
-        padding: 13px;
-    }
-
-    .admin-card-name {
-        color: #ffd700;
-        font-size: 15px;
-        font-weight: 900;
-        margin-bottom: 6px;
-        overflow-wrap: anywhere;
-    }
-
-    .admin-card-url {
-        color: #91a4b8;
-        font-size: 11px;
-        line-height: 1.4;
-        word-break: break-all;
-        margin-bottom: 10px;
-    }
-
-    .admin-card-actions {
-        display: flex;
-        gap: 7px;
-    }
-
-    .admin-card-actions button {
-        flex: 1;
-        border: 0;
-        border-radius: 6px;
-        padding: 8px 7px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 11px;
-    }
-
-    .open-btn {
-        background: #174a72;
-        color: white;
-    }
-
-    .edit-btn {
-        background: #6d5a00;
-        color: white;
-    }
-
-    .delete-btn {
-        background: #631c24;
-        color: white;
-    }
-
-    .no-admins {
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 18px;
-        color: #718399;
-        border: 1px dashed rgba(255, 215, 0, 0.15);
-        border-radius: 9px;
-    }
-
-    /* =====================================================
-       8 PANEL GRID
-       ===================================================== */
 
     .panel-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 15px;
-        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
     }
 
     .panel {
-        width: 100%;
-        min-width: 0;
+
         height: 650px;
-        background: #071525;
-        border: 1px solid rgba(255, 215, 0, 0.25);
-        border-radius: 12px;
-        overflow: hidden;
     }
 
-    .panel iframe {
-        display: block;
-        width: 100%;
-        height: 100%;
-        border: 0;
-        margin: 0;
-        padding: 0;
-        background: #071525;
+    .admin-form {
+
+        grid-template-columns: 1fr;
     }
 
-    .empty-panel {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 650px;
-        border: 1px dashed rgba(255, 215, 0, 0.18);
-        border-radius: 12px;
-        background: #071525;
-        padding: 25px;
-        text-align: center;
-    }
-
-    .empty-panel-icon {
-        font-size: 40px;
-        margin-bottom: 10px;
-    }
-
-    .empty-panel-title {
-        color: #ffd700;
-        font-size: 17px;
-        font-weight: 900;
-        margin-bottom: 7px;
-    }
-
-    .empty-panel-text {
-        color: #72859a;
-        font-size: 12px;
-        line-height: 1.5;
-    }
-
-    /* =====================================================
-       DYNAMIC ADMIN PANEL
-       ===================================================== */
-
-    .dynamic-admin-panel {
-        position: relative;
-        padding: 0;
-        overflow: hidden;
-    }
-
-    .dynamic-admin-panel iframe {
-        width: 100%;
-        height: 100%;
-        border: 0;
-        display: none;
-    }
-
-    .dynamic-placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-        width: 100%;
-        text-align: center;
-        padding: 25px;
-    }
-
-    .dynamic-placeholder .icon {
-        font-size: 42px;
-        margin-bottom: 12px;
-    }
-
-    .dynamic-placeholder .title {
-        color: #ffd700;
-        font-size: 17px;
-        font-weight: 900;
-        margin-bottom: 8px;
-    }
-
-    .dynamic-placeholder .text {
-        color: #72859a;
-        font-size: 12px;
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-
-    .dynamic-placeholder a {
-        display: inline-block;
-        background: #ffd700;
-        color: #020b16;
-        text-decoration: none;
-        padding: 10px 15px;
-        border-radius: 7px;
-        font-size: 12px;
-        font-weight: 900;
-    }
-
-    /* =====================================================
-       EXTRA ADMIN LINKS
-       ===================================================== */
-
-    .extra-admin-section {
-        margin-top: 15px;
-        background: #071525;
-        border: 1px solid rgba(255, 215, 0, 0.25);
-        border-radius: 14px;
-        padding: 18px;
-    }
-
-    .extra-admin-section h2 {
-        margin: 0 0 14px;
-        color: #ffd700;
-        font-size: 20px;
-    }
-
+    .admin-list,
     .extra-admin-grid {
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 10px;
+
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .control-header h1 {
+
+        font-size: 22px;
     }
 
-    .extra-link {
-        display: block;
-        text-decoration: none;
-        background: #020b16;
-        border: 1px solid rgba(255, 215, 0, 0.2);
-        border-radius: 9px;
+    .admin-manager {
+
         padding: 13px;
-        transition: 0.2s;
     }
 
-    .extra-link:hover {
-        border-color: #ffd700;
-        transform: translateY(-2px);
+    .panel {
+
+        height: 650px;
     }
+}
 
-    .extra-link-title {
-        color: #ffd700;
-        font-weight: 900;
-        font-size: 14px;
-        margin-bottom: 5px;
-    }
-
-    .extra-link-url {
-        color: #718399;
-        font-size: 10px;
-        word-break: break-all;
-        line-height: 1.4;
-    }
-
-    /* =====================================================
-       MOBILE
-       ===================================================== */
-
-    @media (max-width: 1100px) {
-        .admin-list,
-        .extra-admin-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-    }
-
-    @media (max-width: 900px) {
-
-        body {
-            padding: 8px;
-        }
-
-        .panel-grid {
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .panel,
-        .empty-panel {
-            height: 650px;
-            min-height: 650px;
-        }
-
-        .admin-form {
-            grid-template-columns: 1fr;
-        }
-
-        .admin-list,
-        .extra-admin-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @media (max-width: 500px) {
-
-        .control-header h1 {
-            font-size: 22px;
-        }
-
-        .admin-manager {
-            padding: 13px;
-        }
-
-        .panel,
-        .empty-panel {
-            height: 650px;
-            min-height: 650px;
-        }
-    }
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="control-panel">
 
-    <!-- =================================================
-         HEADER
-         ================================================= -->
 
-    <div class="control-header">
-        <h1>🎙️ KULZZY RADIO CONTROL PANEL</h1>
-        <p>Central management system • Celebrating Lives Everyday</p>
-    </div>
+<!-- =====================================================
+     HEADER
+     ===================================================== -->
+
+<div class="control-header">
+
+    <h1>
+        🎙️ KULZZY RADIO CONTROL PANEL
+    </h1>
+
+    <p>
+        Central management system •
+        Celebrating Lives Everyday
+    </p>
+
+</div>
 
 
-    <!-- =================================================
-         ADMIN LINKS MANAGER
-         ================================================= -->
+<!-- =====================================================
+     LOGIN
+     ===================================================== -->
 
-    <div class="admin-manager">
+<div
+    id="loginBox"
+    class="login-box">
 
-        <div class="admin-manager-title">
-            <h2>🔗 ADMIN LINKS</h2>
+    <h2>
+        🔐 ADMIN LOGIN
+    </h2>
 
-            <div id="firebaseStatus" class="firebase-status">
-                Connecting to Firebase...
-            </div>
-        </div>
+    <div class="login-description">
 
-        <div class="admin-form">
-
-            <input
-                type="text"
-                id="adminName"
-                placeholder="Admin name e.g. News Admin">
-
-            <input
-                type="url"
-                id="adminUrl"
-                placeholder="Admin link e.g. https://example.github.io/admin.html">
-
-            <button id="saveAdminBtn" onclick="saveAdmin()">
-                ➕ ADD ADMIN
-            </button>
-
-            <button
-                id="cancelEditBtn"
-                class="cancel"
-                onclick="cancelEdit()">
-                CANCEL
-            </button>
-
-        </div>
-
-        <div id="adminList" class="admin-list">
-
-            <div class="no-admins">
-                Loading admin links...
-            </div>
-
-        </div>
+        Sign in with your authorized
+        Firebase administrator account
+        to manage Admin Links.
 
     </div>
 
 
-    <!-- =================================================
-         8 PANEL CONTROL GRID
-         ================================================= -->
-
-    <div class="panel-grid">
-
-        <!-- =============================================
-             PANEL 1
-             ============================================= -->
-
-        <div class="panel">
-
-            <iframe
-                src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/upload.html"
-                title="Kulzzy Upload Manager"
-                loading="eager">
-            </iframe>
-
-        </div>
+    <input
+        id="loginEmail"
+        class="login-input"
+        type="email"
+        autocomplete="username"
+        placeholder="Admin Email">
 
 
-        <!-- =============================================
-             PANEL 2
-             ============================================= -->
-
-        <div class="panel">
-
-            <iframe
-                src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/admin.html"
-                title="Kulzzy Radio Admin"
-                loading="eager">
-            </iframe>
-
-        </div>
+    <input
+        id="loginPassword"
+        class="login-input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Admin Password">
 
 
-        <!-- =============================================
-             PANEL 3
-             ============================================= -->
+    <button
+        class="login-button"
+        onclick="loginAdmin()">
 
-        <div class="panel">
+        🔐 LOGIN
 
-            <iframe
-                src="https://donshangti2.github.io/Live-on-air-/admin.html?utm_source=chatgpt.com"
-                title="Kulzzy Live On Air Admin"
-                loading="eager">
-            </iframe>
+    </button>
 
-        </div>
-
-
-        <!-- =============================================
-             PANEL 4
-             ============================================= -->
-
-        <div class="panel">
-
-            <iframe
-                src="https://donshangti2.github.io/kulzzy-celebrant-slider/admin.html?utm_source=chatgpt.com"
-                title="Kulzzy Celebrant Slider Admin"
-                loading="eager">
-            </iframe>
-
-        </div>
-
-
-        <!-- =============================================
-             PANEL 5
-             DYNAMIC ADMIN
-             ============================================= -->
-
-        <div
-            class="panel dynamic-admin-panel"
-            id="dynamicPanel5">
-
-            <div class="dynamic-placeholder">
-                <div class="icon">🔗</div>
-
-                <div class="title">
-                    ADMIN PANEL 5
-                </div>
-
-                <div class="text">
-                    Add an admin link above and it will automatically
-                    appear here.
-                </div>
-            </div>
-
-            <iframe></iframe>
-
-        </div>
-
-
-        <!-- =============================================
-             PANEL 6
-             DYNAMIC ADMIN
-             ============================================= -->
-
-        <div
-            class="panel dynamic-admin-panel"
-            id="dynamicPanel6">
-
-            <div class="dynamic-placeholder">
-                <div class="icon">🔗</div>
-
-                <div class="title">
-                    ADMIN PANEL 6
-                </div>
-
-                <div class="text">
-                    Add another admin link and it will automatically
-                    appear here.
-                </div>
-            </div>
-
-            <iframe></iframe>
-
-        </div>
-
-
-        <!-- =============================================
-             PANEL 7
-             DYNAMIC ADMIN
-             ============================================= -->
-
-        <div
-            class="panel dynamic-admin-panel"
-            id="dynamicPanel7">
-
-            <div class="dynamic-placeholder">
-                <div class="icon">🔗</div>
-
-                <div class="title">
-                    ADMIN PANEL 7
-                </div>
-
-                <div class="text">
-                    Your next admin system can be added here.
-                </div>
-            </div>
-
-            <iframe></iframe>
-
-        </div>
-
-
-        <!-- =============================================
-             PANEL 8
-             DYNAMIC ADMIN
-             ============================================= -->
-
-        <div
-            class="panel dynamic-admin-panel"
-            id="dynamicPanel8">
-
-            <div class="dynamic-placeholder">
-                <div class="icon">🔗</div>
-
-                <div class="title">
-                    ADMIN PANEL 8
-                </div>
-
-                <div class="text">
-                    Your next admin system can be added here.
-                </div>
-            </div>
-
-            <iframe></iframe>
-
-        </div>
-
-    </div>
-
-
-    <!-- =================================================
-         EXTRA ADMIN LINKS
-         ================================================= -->
 
     <div
-        class="extra-admin-section"
-        id="extraAdminSection"
-        style="display:none;">
+        id="loginMessage"
+        class="login-message">
+    </div>
 
-        <h2>📂 OTHER ADMIN SYSTEMS</h2>
+</div>
+
+
+<!-- =====================================================
+     ADMIN SESSION
+     ===================================================== -->
+
+<div
+    id="adminSession"
+    class="admin-session">
+
+    <div
+        id="adminSessionInfo"
+        class="admin-session-info">
+
+        🔐 Administrator logged in
+
+    </div>
+
+
+    <button
+        class="logout-button"
+        onclick="logoutAdmin()">
+
+        🚪 LOGOUT
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN LINK MANAGER
+     ===================================================== -->
+
+<div
+    id="adminManager"
+    class="admin-manager">
+
+
+    <div class="admin-manager-title">
+
+        <h2>
+            🔗 ADMIN LINKS
+        </h2>
+
 
         <div
-            class="extra-admin-grid"
-            id="extraAdminGrid">
+            id="firebaseStatus"
+            class="firebase-status">
+
+            Connecting...
+
         </div>
 
     </div>
+
+
+    <div class="admin-form">
+
+
+        <input
+            id="adminName"
+            type="text"
+            placeholder="Admin name e.g. News Admin">
+
+
+        <input
+            id="adminUrl"
+            type="url"
+            placeholder="Admin link e.g. https://example.com/admin.html">
+
+
+        <button
+            id="saveAdminBtn"
+            onclick="saveAdmin()">
+
+            ➕ ADD ADMIN
+
+        </button>
+
+
+        <button
+            id="cancelEditBtn"
+            class="cancel"
+            onclick="cancelEdit()">
+
+            CANCEL
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="adminList"
+        class="admin-list">
+
+        <div class="no-admins">
+
+            Login to manage admin links.
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     8 PANELS
+     ===================================================== -->
+
+<div class="panel-grid">
+
+
+<!-- =====================================================
+     PANEL 1
+     ===================================================== -->
+
+<div class="panel">
+
+    <iframe
+        src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/upload.html"
+        title="Kulzzy Upload Manager"
+        loading="eager">
+    </iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 2
+     ===================================================== -->
+
+<div class="panel">
+
+    <iframe
+        src="https://donshangti2.github.io/KULZZY-AUTO-PLAYER/admin.html"
+        title="Kulzzy Radio Admin"
+        loading="eager">
+    </iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 3
+     ===================================================== -->
+
+<div class="panel">
+
+    <iframe
+        src="https://donshangti2.github.io/Live-on-air-/admin.html?utm_source=chatgpt.com"
+        title="Kulzzy Live On Air Admin"
+        loading="eager">
+    </iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 4
+     ===================================================== -->
+
+<div class="panel">
+
+    <iframe
+        src="https://donshangti2.github.io/kulzzy-celebrant-slider/admin.html?utm_source=chatgpt.com"
+        title="Kulzzy Celebrant Slider Admin"
+        loading="eager">
+    </iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 5
+     ===================================================== -->
+
+<div
+    id="dynamicPanel5"
+    class="panel dynamic-admin-panel">
+
+    <div class="dynamic-placeholder">
+
+        <div class="icon">
+            🔗
+        </div>
+
+        <div class="title">
+            ADMIN PANEL 5
+        </div>
+
+        <div class="text">
+            Add an admin link after logging in.
+            It will automatically appear here.
+        </div>
+
+    </div>
+
+    <iframe></iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 6
+     ===================================================== -->
+
+<div
+    id="dynamicPanel6"
+    class="panel dynamic-admin-panel">
+
+    <div class="dynamic-placeholder">
+
+        <div class="icon">
+            🔗
+        </div>
+
+        <div class="title">
+            ADMIN PANEL 6
+        </div>
+
+        <div class="text">
+            Add another admin system and it
+            will automatically appear here.
+        </div>
+
+    </div>
+
+    <iframe></iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 7
+     ===================================================== -->
+
+<div
+    id="dynamicPanel7"
+    class="panel dynamic-admin-panel">
+
+    <div class="dynamic-placeholder">
+
+        <div class="icon">
+            🔗
+        </div>
+
+        <div class="title">
+            ADMIN PANEL 7
+        </div>
+
+        <div class="text">
+            Your next admin system can be
+            added without editing this HTML.
+        </div>
+
+    </div>
+
+    <iframe></iframe>
+
+</div>
+
+
+<!-- =====================================================
+     PANEL 8
+     ===================================================== -->
+
+<div
+    id="dynamicPanel8"
+    class="panel dynamic-admin-panel">
+
+    <div class="dynamic-placeholder">
+
+        <div class="icon">
+            🔗
+        </div>
+
+        <div class="title">
+            ADMIN PANEL 8
+        </div>
+
+        <div class="text">
+            Your next admin system can be
+            added without changing this code.
+        </div>
+
+    </div>
+
+    <iframe></iframe>
+
+</div>
+
+
+</div>
+
+
+<!-- =====================================================
+     EXTRA ADMIN SYSTEMS
+     ===================================================== -->
+
+<div
+    id="extraAdminSection"
+    class="extra-admin-section">
+
+    <h2>
+        📂 OTHER ADMIN SYSTEMS
+    </h2>
+
+    <div
+        id="extraAdminGrid"
+        class="extra-admin-grid">
+    </div>
+
+</div>
+
 
 </div>
 
@@ -727,7 +1304,8 @@
 
 const firebaseConfig = {
 
-    apiKey: "AIzaSyA9J86PfbhuE-iv3pGFSv0a-W5x2q4J8_Y",
+    apiKey:
+        "AIzaSyA9J86PfbhuE-iv3pGFSv0a-W5x2q4J8_Y",
 
     authDomain:
         "admin-panel-controller.firebaseapp.com",
@@ -753,65 +1331,22 @@ const firebaseConfig = {
 
 
 /* =====================================================
-   START FIREBASE
+   FIREBASE INITIALIZATION
    ===================================================== */
 
-let database;
+firebase.initializeApp(firebaseConfig);
 
-try {
 
-    firebase.initializeApp(firebaseConfig);
+const auth =
+    firebase.auth();
 
-    database = firebase.database();
 
-    setFirebaseStatus(
-        "● Firebase Connected",
-        true
-    );
-
-} catch (error) {
-
-    console.error(
-        "Firebase initialization error:",
-        error
-    );
-
-    setFirebaseStatus(
-        "● Firebase Error",
-        false
-    );
-}
+const database =
+    firebase.database();
 
 
 /* =====================================================
-   FIREBASE STATUS
-   ===================================================== */
-
-function setFirebaseStatus(text, online) {
-
-    const status =
-        document.getElementById("firebaseStatus");
-
-    status.textContent = text;
-
-    status.classList.remove(
-        "online",
-        "offline"
-    );
-
-    if (online) {
-
-        status.classList.add("online");
-
-    } else {
-
-        status.classList.add("offline");
-    }
-}
-
-
-/* =====================================================
-   ADMIN DATA
+   VARIABLES
    ===================================================== */
 
 let adminData = {};
@@ -820,12 +1355,286 @@ let editingAdminId = null;
 
 
 /* =====================================================
-   LISTEN FOR ADMIN LINKS
+   FIREBASE STATUS
+   ===================================================== */
+
+function setFirebaseStatus(
+    text,
+    online
+) {
+
+    const status =
+        document.getElementById(
+            "firebaseStatus"
+        );
+
+    status.textContent =
+        text;
+
+    status.classList.remove(
+        "online",
+        "offline"
+    );
+
+    if (online) {
+
+        status.classList.add(
+            "online"
+        );
+
+    } else {
+
+        status.classList.add(
+            "offline"
+        );
+    }
+}
+
+
+/* =====================================================
+   LOGIN
+   ===================================================== */
+
+function loginAdmin() {
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value.trim();
+
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "loginMessage"
+        );
+
+
+    message.textContent =
+        "";
+
+
+    if (!email) {
+
+        message.textContent =
+            "Please enter your admin email.";
+
+        return;
+    }
+
+
+    if (!password) {
+
+        message.textContent =
+            "Please enter your password.";
+
+        return;
+    }
+
+
+    message.textContent =
+        "Logging in...";
+
+
+    auth
+        .signInWithEmailAndPassword(
+            email,
+            password
+        )
+        .then(function() {
+
+            message.textContent =
+                "";
+
+            document.getElementById(
+                "loginPassword"
+            ).value = "";
+
+        })
+        .catch(function(error) {
+
+            console.error(error);
+
+
+            let errorMessage =
+                "Login failed.";
+
+
+            if (
+                error.code ===
+                "auth/invalid-credential"
+            ) {
+
+                errorMessage =
+                    "Incorrect email or password.";
+
+            } else if (
+                error.code ===
+                "auth/user-not-found"
+            ) {
+
+                errorMessage =
+                    "Administrator account not found.";
+
+            } else if (
+                error.code ===
+                "auth/wrong-password"
+            ) {
+
+                errorMessage =
+                    "Incorrect password.";
+
+            } else if (
+                error.code ===
+                "auth/too-many-requests"
+            ) {
+
+                errorMessage =
+                    "Too many login attempts. Please try again later.";
+
+            } else {
+
+                errorMessage =
+                    error.message;
+            }
+
+
+            message.textContent =
+                errorMessage;
+        });
+}
+
+
+/* =====================================================
+   LOGOUT
+   ===================================================== */
+
+function logoutAdmin() {
+
+    auth
+        .signOut()
+        .then(function() {
+
+            cancelEdit();
+
+            adminData = {};
+
+            clearAdminPanels();
+
+        })
+        .catch(function(error) {
+
+            console.error(error);
+
+        });
+}
+
+
+/* =====================================================
+   AUTH STATE
+   ===================================================== */
+
+auth.onAuthStateChanged(
+    function(user) {
+
+        if (user) {
+
+            showLoggedIn(user);
+
+        } else {
+
+            showLoggedOut();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   SHOW LOGGED IN
+   ===================================================== */
+
+function showLoggedIn(user) {
+
+    document.getElementById(
+        "loginBox"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "adminSession"
+    ).style.display =
+        "flex";
+
+
+    document.getElementById(
+        "adminManager"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "adminSessionInfo"
+    ).textContent =
+        "🔐 Logged in: " +
+        user.email;
+
+
+    setFirebaseStatus(
+        "● Firebase Connected",
+        true
+    );
+
+
+    startAdminListener();
+}
+
+
+/* =====================================================
+   SHOW LOGGED OUT
+   ===================================================== */
+
+function showLoggedOut() {
+
+    document.getElementById(
+        "loginBox"
+    ).style.display =
+        "block";
+
+
+    document.getElementById(
+        "adminSession"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "adminManager"
+    ).style.display =
+        "none";
+
+
+    clearAdminPanels();
+}
+
+
+/* =====================================================
+   DATABASE LISTENER
    ===================================================== */
 
 function startAdminListener() {
 
-    if (!database) return;
+    database
+        .ref("adminLinks")
+        .off();
+
 
     database
         .ref("adminLinks")
@@ -840,28 +1649,44 @@ function startAdminListener() {
 
                 renderAdmins();
 
+                setFirebaseStatus(
+                    "● Database Connected",
+                    true
+                );
+
             },
 
             function(error) {
 
                 console.error(
-                    "Firebase read error:",
+                    "Firebase database error:",
                     error
                 );
 
-                document.getElementById(
-                    "adminList"
-                ).innerHTML = `
-                    <div class="no-admins">
-                        ⚠️ Unable to load admin links.
-                        Check your Firebase Database Rules.
-                    </div>
-                `;
 
                 setFirebaseStatus(
                     "● Database Access Error",
                     false
                 );
+
+
+                document.getElementById(
+                    "adminList"
+                ).innerHTML = `
+
+                    <div class="no-admins">
+
+                        ⚠️ Firebase denied access.
+
+                        <br><br>
+
+                        Make sure your Firebase
+                        Realtime Database rules contain
+                        your administrator UID.
+
+                    </div>
+
+                `;
             }
         );
 }
@@ -870,19 +1695,33 @@ function startAdminListener() {
 /* =====================================================
    SAVE ADMIN
    ===================================================== */
+
 function saveAdmin() {
 
-    const nameInput =
-        document.getElementById("adminName");
+    const user =
+        auth.currentUser;
 
-    const urlInput =
-        document.getElementById("adminUrl");
+
+    if (!user) {
+
+        alert(
+            "Please login as administrator first."
+        );
+
+        return;
+    }
+
 
     const name =
-        nameInput.value.trim();
+        document.getElementById(
+            "adminName"
+        ).value.trim();
+
 
     const url =
-        urlInput.value.trim();
+        document.getElementById(
+            "adminUrl"
+        ).value.trim();
 
 
     if (!name) {
@@ -890,8 +1729,6 @@ function saveAdmin() {
         alert(
             "Please enter the admin name."
         );
-
-        nameInput.focus();
 
         return;
     }
@@ -903,15 +1740,13 @@ function saveAdmin() {
             "Please enter the admin link."
         );
 
-        urlInput.focus();
-
         return;
     }
 
 
-    /* Make sure the URL uses HTTP/HTTPS */
+    let finalUrl =
+        url;
 
-    let finalUrl = url;
 
     if (
         !url.startsWith("https://") &&
@@ -924,7 +1759,7 @@ function saveAdmin() {
 
 
     /* =================================================
-       EDIT EXISTING ADMIN
+       UPDATE
        ================================================= */
 
     if (editingAdminId) {
@@ -936,12 +1771,16 @@ function saveAdmin() {
             )
             .update({
 
-                name: name,
+                name:
+                    name,
 
-                url: finalUrl,
+                url:
+                    finalUrl,
 
                 updatedAt:
-                    firebase.database.ServerValue.TIMESTAMP
+                    firebase.database
+                        .ServerValue
+                        .TIMESTAMP
 
             })
             .then(function() {
@@ -958,9 +1797,10 @@ function saveAdmin() {
                 console.error(error);
 
                 alert(
-                    "Unable to update admin link.\n\n" +
+                    "Update failed.\n\n" +
                     error.message
                 );
+
             });
 
         return;
@@ -968,29 +1808,35 @@ function saveAdmin() {
 
 
     /* =================================================
-       ADD NEW ADMIN
+       ADD
        ================================================= */
 
-    const newAdminRef =
-        database.ref("adminLinks").push();
+    database
+        .ref("adminLinks")
+        .push({
 
+            name:
+                name,
 
-    newAdminRef
-        .set({
-
-            name: name,
-
-            url: finalUrl,
+            url:
+                finalUrl,
 
             createdAt:
-                firebase.database.ServerValue.TIMESTAMP
+                firebase.database
+                    .ServerValue
+                    .TIMESTAMP
 
         })
         .then(function() {
 
-            nameInput.value = "";
+            document.getElementById(
+                "adminName"
+            ).value = "";
 
-            urlInput.value = "";
+
+            document.getElementById(
+                "adminUrl"
+            ).value = "";
 
         })
         .catch(function(error) {
@@ -998,9 +1844,10 @@ function saveAdmin() {
             console.error(error);
 
             alert(
-                "Unable to save admin link.\n\n" +
+                "Unable to add admin.\n\n" +
                 error.message
             );
+
         });
 }
 
@@ -1013,6 +1860,7 @@ function editAdmin(id) {
 
     const admin =
         adminData[id];
+
 
     if (!admin) return;
 
@@ -1029,7 +1877,8 @@ function editAdmin(id) {
         admin.url || "";
 
 
-    editingAdminId = id;
+    editingAdminId =
+        id;
 
 
     document.getElementById(
@@ -1048,14 +1897,6 @@ function editAdmin(id) {
         "adminName"
     ).focus();
 
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
 }
 
 
@@ -1065,17 +1906,20 @@ function editAdmin(id) {
 
 function cancelEdit() {
 
-    editingAdminId = null;
+    editingAdminId =
+        null;
 
 
     document.getElementById(
         "adminName"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "adminUrl"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
@@ -1100,6 +1944,7 @@ function deleteAdmin(id) {
     const admin =
         adminData[id];
 
+
     if (!admin) return;
 
 
@@ -1107,7 +1952,7 @@ function deleteAdmin(id) {
         confirm(
             'Delete "' +
             (admin.name || "this admin") +
-            '" from the control panel?'
+            '"?'
         );
 
 
@@ -1116,14 +1961,18 @@ function deleteAdmin(id) {
 
     database
         .ref(
-            "adminLinks/" + id
+            "adminLinks/" +
+            id
         )
         .remove()
         .then(function() {
 
-            if (editingAdminId === id) {
+            if (
+                editingAdminId === id
+            ) {
 
                 cancelEdit();
+
             }
 
         })
@@ -1132,9 +1981,10 @@ function deleteAdmin(id) {
             console.error(error);
 
             alert(
-                "Unable to delete admin link.\n\n" +
+                "Delete failed.\n\n" +
                 error.message
             );
+
         });
 }
 
@@ -1152,16 +2002,34 @@ function renderAdmins() {
 
 
     const ids =
-        Object.keys(adminData);
+        Object.keys(
+            adminData
+        );
+
+
+    ids.sort(
+        function(a,b) {
+
+            return (
+                (adminData[a].createdAt || 0)
+                -
+                (adminData[b].createdAt || 0)
+            );
+
+        }
+    );
 
 
     if (ids.length === 0) {
 
         list.innerHTML = `
+
             <div class="no-admins">
+
                 🔗 No admin links added yet.
-                Add your first admin above.
+
             </div>
+
         `;
 
         renderDynamicPanels([]);
@@ -1172,87 +2040,88 @@ function renderAdmins() {
     }
 
 
-    /* Sort by creation time */
-
-    ids.sort(function(a, b) {
-
-        const timeA =
-            adminData[a].createdAt || 0;
-
-        const timeB =
-            adminData[b].createdAt || 0;
-
-        return timeA - timeB;
-
-    });
+    list.innerHTML =
+        "";
 
 
-    list.innerHTML = "";
+    ids.forEach(
+        function(id) {
+
+            const admin =
+                adminData[id];
 
 
-    ids.forEach(function(id) {
-
-        const admin =
-            adminData[id];
-
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "admin-card";
+            const card =
+                document.createElement(
+                    "div"
+                );
 
 
-        const name =
-            escapeHtml(
-                admin.name ||
-                "Unnamed Admin"
+            card.className =
+                "admin-card";
+
+
+            card.innerHTML = `
+
+                <div class="admin-card-name">
+
+                    ${escapeHtml(
+                        admin.name ||
+                        "Unnamed Admin"
+                    )}
+
+                </div>
+
+
+                <div class="admin-card-url">
+
+                    ${escapeHtml(
+                        admin.url ||
+                        ""
+                    )}
+
+                </div>
+
+
+                <div class="admin-card-actions">
+
+                    <button
+                        class="open-btn"
+                        onclick="openAdmin('${escapeJs(id)}')">
+
+                        OPEN
+
+                    </button>
+
+
+                    <button
+                        class="edit-btn"
+                        onclick="editAdmin('${escapeJs(id)}')">
+
+                        EDIT
+
+                    </button>
+
+
+                    <button
+                        class="delete-btn"
+                        onclick="deleteAdmin('${escapeJs(id)}')">
+
+                        DELETE
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(
+                card
             );
 
-
-        const url =
-            escapeHtml(
-                admin.url || ""
-            );
-
-
-        card.innerHTML = `
-
-            <div class="admin-card-name">
-                ${name}
-            </div>
-
-            <div class="admin-card-url">
-                ${url}
-            </div>
-
-            <div class="admin-card-actions">
-
-                <button
-                    class="open-btn"
-                    onclick="openAdmin('${escapeJs(id)}')">
-                    OPEN
-                </button>
-
-                <button
-                    class="edit-btn"
-                    onclick="editAdmin('${escapeJs(id)}')">
-                    EDIT
-                </button>
-
-                <button
-                    class="delete-btn"
-                    onclick="deleteAdmin('${escapeJs(id)}')">
-                    DELETE
-                </button>
-
-            </div>
-        `;
-
-
-        list.appendChild(card);
-
-    });
+        }
+    );
 
 
     renderDynamicPanels(ids);
@@ -1262,7 +2131,7 @@ function renderAdmins() {
 
 
 /* =====================================================
-   PUT FIRST 4 DYNAMIC ADMINS INTO PANELS 5–8
+   DYNAMIC PANELS 5–8
    ===================================================== */
 
 function renderDynamicPanels(ids) {
@@ -1280,77 +2149,86 @@ function renderDynamicPanels(ids) {
     ];
 
 
-    panelIds.forEach(function(panelId, index) {
+    panelIds.forEach(
+        function(panelId,index) {
 
-        const panel =
-            document.getElementById(
-                panelId
-            );
-
-        if (!panel) return;
-
-
-        const placeholder =
-            panel.querySelector(
-                ".dynamic-placeholder"
-            );
-
-        const iframe =
-            panel.querySelector(
-                "iframe"
-            );
+            const panel =
+                document.getElementById(
+                    panelId
+                );
 
 
-        const adminId =
-            ids[index];
+            const placeholder =
+                panel.querySelector(
+                    ".dynamic-placeholder"
+                );
 
 
-        if (!adminId) {
+            const iframe =
+                panel.querySelector(
+                    "iframe"
+                );
+
+
+            const adminId =
+                ids[index];
+
+
+            if (!adminId) {
+
+                placeholder.style.display =
+                    "flex";
+
+
+                iframe.style.display =
+                    "none";
+
+
+                iframe.removeAttribute(
+                    "src"
+                );
+
+
+                return;
+            }
+
+
+            const admin =
+                adminData[adminId];
+
+
+            if (
+                !admin ||
+                !admin.url
+            ) {
+
+                return;
+            }
+
 
             placeholder.style.display =
-                "flex";
-
-            iframe.style.display =
                 "none";
 
-            iframe.removeAttribute("src");
 
-            return;
+            iframe.style.display =
+                "block";
+
+
+            iframe.src =
+                admin.url;
+
+
+            iframe.title =
+                admin.name ||
+                "Kulzzy Admin Panel";
+
         }
-
-
-        const admin =
-            adminData[adminId];
-
-
-        if (!admin || !admin.url) {
-
-            return;
-        }
-
-
-        placeholder.style.display =
-            "none";
-
-
-        iframe.style.display =
-            "block";
-
-
-        iframe.src =
-            admin.url;
-
-
-        iframe.title =
-            admin.name ||
-            "Kulzzy Admin Panel";
-
-    });
+    );
 }
 
 
 /* =====================================================
-   EXTRA ADMIN LINKS
+   EXTRA LINKS
    ===================================================== */
 
 function renderExtraLinks(ids) {
@@ -1360,24 +2238,28 @@ function renderExtraLinks(ids) {
             "extraAdminSection"
         );
 
+
     const grid =
         document.getElementById(
             "extraAdminGrid"
         );
 
 
-    /* Only admins after the first 4 */
-
     const extraIds =
         ids.slice(4);
 
 
-    if (extraIds.length === 0) {
+    if (
+        extraIds.length === 0
+    ) {
 
         section.style.display =
             "none";
 
-        grid.innerHTML = "";
+
+        grid.innerHTML =
+            "";
+
 
         return;
     }
@@ -1387,59 +2269,74 @@ function renderExtraLinks(ids) {
         "block";
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+        "";
 
 
-    extraIds.forEach(function(id) {
+    extraIds.forEach(
+        function(id) {
 
-        const admin =
-            adminData[id];
-
-
-        if (!admin) return;
+            const admin =
+                adminData[id];
 
 
-        const link =
-            document.createElement("a");
+            if (!admin) return;
 
 
-        link.className =
-            "extra-link";
+            const link =
+                document.createElement(
+                    "a"
+                );
 
 
-        link.href =
-            admin.url || "#";
+            link.className =
+                "extra-link";
 
 
-        link.target =
-            "_blank";
+            link.href =
+                admin.url ||
+                "#";
 
 
-        link.rel =
-            "noopener noreferrer";
+            link.target =
+                "_blank";
 
 
-        link.innerHTML = `
-
-            <div class="extra-link-title">
-                🔗 ${escapeHtml(
-                    admin.name ||
-                    "Admin Panel"
-                )}
-            </div>
-
-            <div class="extra-link-url">
-                ${escapeHtml(
-                    admin.url || ""
-                )}
-            </div>
-
-        `;
+            link.rel =
+                "noopener noreferrer";
 
 
-        grid.appendChild(link);
+            link.innerHTML = `
 
-    });
+                <div class="extra-link-title">
+
+                    🔗
+                    ${escapeHtml(
+                        admin.name ||
+                        "Admin Panel"
+                    )}
+
+                </div>
+
+
+                <div class="extra-link-url">
+
+                    ${escapeHtml(
+                        admin.url ||
+                        ""
+                    )}
+
+                </div>
+
+            `;
+
+
+            grid.appendChild(
+                link
+            );
+
+        }
+    );
 }
 
 
@@ -1452,7 +2349,11 @@ function openAdmin(id) {
     const admin =
         adminData[id];
 
-    if (!admin || !admin.url) {
+
+    if (
+        !admin ||
+        !admin.url
+    ) {
 
         alert(
             "Admin link is not available."
@@ -1471,70 +2372,189 @@ function openAdmin(id) {
 
 
 /* =====================================================
-   HTML SECURITY HELPERS
+   CLEAR PANELS WHEN LOGGED OUT
+   ===================================================== */
+
+function clearAdminPanels() {
+
+    const panelIds = [
+
+        "dynamicPanel5",
+
+        "dynamicPanel6",
+
+        "dynamicPanel7",
+
+        "dynamicPanel8"
+
+    ];
+
+
+    panelIds.forEach(
+        function(id) {
+
+            const panel =
+                document.getElementById(
+                    id
+                );
+
+
+            if (!panel) return;
+
+
+            const placeholder =
+                panel.querySelector(
+                    ".dynamic-placeholder"
+                );
+
+
+            const iframe =
+                panel.querySelector(
+                    "iframe"
+                );
+
+
+            placeholder.style.display =
+                "flex";
+
+
+            iframe.style.display =
+                "none";
+
+
+            iframe.removeAttribute(
+                "src"
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "adminList"
+    ).innerHTML = `
+
+        <div class="no-admins">
+
+            🔐 Login as administrator
+            to manage Admin Links.
+
+        </div>
+
+    `;
+
+
+    document.getElementById(
+        "extraAdminSection"
+    ).style.display =
+        "none";
+}
+
+
+/* =====================================================
+   ESCAPE HTML
    ===================================================== */
 
 function escapeHtml(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
 
+        .replace(
+            /&/g,
+            "&amp;"
+        )
 
-function escapeJs(value) {
+        .replace(
+            /</g,
+            "&lt;"
+        )
 
-    return String(value)
-        .replace(/\\/g, "\\\\")
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '\\"')
-        .replace(/\n/g, "\\n")
-        .replace(/\r/g, "\\r");
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 }
 
 
 /* =====================================================
-   START
+   ESCAPE JAVASCRIPT
    ===================================================== */
 
-startAdminListener();
+function escapeJs(value) {
+
+    return String(value)
+
+        .replace(
+            /\\/g,
+            "\\\\"
+        )
+
+        .replace(
+            /'/g,
+            "\\'"
+        )
+
+        .replace(
+            /"/g,
+            '\\"'
+        )
+
+        .replace(
+            /\n/g,
+            "\\n"
+        )
+
+        .replace(
+            /\r/g,
+            "\\r"
+        );
+}
 
 
 /* =====================================================
    FIREBASE CONNECTION MONITOR
    ===================================================== */
 
-if (database) {
+database
+    .ref(".info/connected")
+    .on(
+        "value",
+        function(snapshot) {
 
-    database
-        .ref(".info/connected")
-        .on(
-            "value",
-            function(snapshot) {
+            if (
+                snapshot.val() === true
+            ) {
 
-                if (snapshot.val() === true) {
+                setFirebaseStatus(
+                    "● Firebase Connected",
+                    true
+                );
 
-                    setFirebaseStatus(
-                        "● Firebase Connected",
-                        true
-                    );
+            } else {
 
-                } else {
-
-                    setFirebaseStatus(
-                        "● Firebase Offline",
-                        false
-                    );
-                }
+                setFirebaseStatus(
+                    "● Firebase Offline",
+                    false
+                );
 
             }
-        );
-}
+
+        }
+    );
+
 
 </script>
 
 </body>
+
 </html>
