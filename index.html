@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kulzzy Radio Control Panel</title>
-
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-
-<style>
+<meta name="theme-color" content="#020b16">
+<meta name="description" content="Kulzzy Radio Control Panel">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Kulzzy Radio Control Panel</title><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script><style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;width:100%;min-height:100%;background:#020b16;font-family:Arial,Helvetica,sans-serif;color:white}
 body{padding:15px}
@@ -484,32 +481,21 @@ padding:6px 7px;
 font-size:9px
 }
 }
-</style>
-</head>
-
-<body>
-
-<div class="control-panel">
-
-<div class="control-header">
+</style></head><body><div class="control-panel"><div class="control-header">
 <h1>🎙️ KULZZY RADIO CONTROL PANEL</h1>
 <p>Central management system • Celebrating Lives Everyday</p>
-</div>
-
-<div id="loginBox" class="login-box">
-<h2>🔐 ADMIN LOGIN</h2>
-
-<div class="login-description">
+<button id="installAppButton" type="button" hidden style="margin-top:14px;padding:11px 18px;border:1px solid #ffd700;border-radius:9px;background:#ffd700;color:#020b16;font-weight:800;font-size:15px;cursor:pointer">📲 Install Control Panel</button>
+</div><div id="loginBox" class="login-box">
+<h2>🔐 ADMIN LOGIN</h2><div class="login-description">
 Sign in with your authorized Firebase administrator account to manage Admin Links.
-</div>
-
-<input
+</div><input
 id="loginEmail"
 class="login-input"
 type="email"
 autocomplete="username"
 placeholder="Admin Email"
->
+
+«»
 
 <input
 id="loginPassword"
@@ -517,140 +503,87 @@ class="login-input"
 type="password"
 autocomplete="current-password"
 placeholder="Admin Password"
->
+
+«»
 
 <button class="login-button" onclick="loginAdmin()">🔐 LOGIN</button>
 
 <div id="loginMessage" class="login-message"></div>
-</div>
-
-<div id="adminSession" class="admin-session">
-
-<div id="adminSessionInfo" class="admin-session-info">
+</div><div id="adminSession" class="admin-session"><div id="adminSessionInfo" class="admin-session-info">
 🔐 Administrator logged in
-</div>
-
-<button class="logout-button" onclick="logoutAdmin()">
+</div><button class="logout-button" onclick="logoutAdmin()">
 🚪 LOGOUT
-</button>
-
-</div>
-
-<div id="adminManager" class="admin-manager">
-
-<div class="admin-manager-title">
-
-<h2>🔗 ADMIN LINKS</h2>
-
-<div id="firebaseStatus" class="firebase-status">
+</button></div><div id="adminManager" class="admin-manager"><div class="admin-manager-title"><h2>🔗 ADMIN LINKS</h2><div id="firebaseStatus" class="firebase-status">
 Connecting...
-</div>
-
-</div>
-
-<div class="admin-form">
-
-<input
+</div></div><div class="admin-form"><input
 id="adminName"
 type="text"
 placeholder="Admin name e.g. News Admin"
 maxlength="100"
->
+
+«»
 
 <input
 id="adminUrl"
 type="url"
 placeholder="Admin link e.g. https://example.com/admin.html"
->
+
+«»
 
 <button id="saveAdminBtn" onclick="saveAdmin()">
 ➕ ADD ADMIN
-</button>
-
-<button
+</button><button
 id="cancelEditBtn"
 class="cancel"
 onclick="cancelEdit()"
->
+
+«»
+
 CANCEL
 </button>
 
-</div>
-
-<div id="adminList" class="admin-list">
+</div><div id="adminList" class="admin-list">
 <div class="no-admins">
 Loading Admin Links...
 </div>
-</div>
-
-<div id="adminCount" class="admin-count">
+</div><div id="adminCount" class="admin-count">
 0 Admin Links
-</div>
-
-</div>
-
-<div id="multiController" class="multi-controller">
-
-<div class="multi-controller-header">
-
-<div>
-
-<div class="multi-controller-title">
+</div></div><div id="multiController" class="multi-controller"><div class="multi-controller-header"><div><div class="multi-controller-title">
 🎛️ MULTI-PANEL RADIO CONTROLLER
-</div>
-
-<div class="multi-controller-subtitle">
+</div><div class="multi-controller-subtitle">
 Control multiple Admin Panels simultaneously
-</div>
-
-</div>
-
-<div class="multi-controller-buttons">
-
-<button
+</div></div><div class="multi-controller-buttons"><button
 class="open-all-btn"
 onclick="openAllAdmins()"
->
+
+«»
+
 🚀 OPEN ALL PANELS
 </button>
 
 <button
 class="refresh-all-btn"
 onclick="refreshAllPanels()"
->
+
+«»
+
 🔄 REFRESH ALL
 </button>
 
 <button
 class="close-all-btn"
 onclick="closeAllPanels()"
->
+
+«»
+
 ✖ CLOSE ALL
 </button>
 
-</div>
-
-</div>
-
-<div id="panelGrid" class="panel-grid">
-
-<div class="no-panels-message">
-
-<strong>
+</div></div><div id="panelGrid" class="panel-grid"><div class="no-panels-message"><strong>
 🎛️ RADIO CONTROL CENTER READY
-</strong>
+</strong>Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.
 
-Add your Admin Panel links above, then press OPEN or OPEN ALL PANELS.
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script>
+</div></div></div></div><script>
 
 /* =====================================================
    KULZZY RADIO FIREBASE CONFIGURATION
@@ -1814,7 +1747,51 @@ false
 }
 );
 
-</script>
+</script><!-- PWA INSTALLATION SUPPORT --><script>
+(function () {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js")
+        .catch(function (error) {
+          console.warn("PWA service worker registration failed:", error);
+        });
+    });
+  }
 
-</body>
+  var installButton = document.getElementById("installAppButton");
+  var installPromptEvent = null;
+
+  window.addEventListener("beforeinstallprompt", function (event) {
+    event.preventDefault();
+    installPromptEvent = event;
+
+    if (installButton) {
+      installButton.hidden = false;
+    }
+  });
+
+  if (installButton) {
+    installButton.addEventListener("click", async function () {
+      if (installPromptEvent) {
+        installPromptEvent.prompt();
+        await installPromptEvent.userChoice;
+        installPromptEvent = null;
+        installButton.hidden = true;
+      } else {
+        alert(
+          "If the install button is unavailable, open your browser menu and choose Install app or Add to Home screen."
+        );
+      }
+    });
+  }
+
+  window.addEventListener("appinstalled", function () {
+    if (installButton) {
+      installButton.hidden = true;
+    }
+
+    installPromptEvent = null;
+  });
+})();
+</script></body>
 </html>
